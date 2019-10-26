@@ -1,0 +1,11 @@
+body { 
+  background-color: #3a506b;
+  color: #fff;
+}
+
+img.owl {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  z-index: 2;
+}
