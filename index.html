@@ -24,27 +24,51 @@
       resize: none;
 
       padding: 100px;
+    }
 
-      animation-name: shrink;
+    .shrink {
+      animation-name: shrink-animation;
       animation-duration: 1s;
-      animation-iteration-count: infinite;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
     }
 
-    @keyframes shrink {
-      0% {transform: scale(1)}
-      100% {transform: scale(0)}
+    @keyframes shrink-animation {
+      from {transform: scale(1)}
+      to {transform: scale(0)}
     }
 
+    .pop {
+      background-image:url(letter.jpg);
+      display: block;
+      width: 100px;
+      height: 100px;
+    }
+
+    @keyframes pop-animation {
+      from {transform: scale(0)}
+      to {transform: scale(1)}
+    }
   </style>
 </head>
 <body>
 
-<textarea></textarea>
+<textarea id="letter"></textarea>
+<button onclick="shrink()">test</button>
+
 
 <script type="text/javascript">
   console.log('back to javascript! :D');
 
-  
+  const shrink = () => {
+    document.getElementById('letter').className = "shrink";
+
+    setTimeout(() => {
+      console.log('ahh');
+      document.getElementById('letter').className = "pop";
+    }, 1000)
+  }
+
 </script>
   
 </body>
