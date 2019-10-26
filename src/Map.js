@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./map.css"
+import "./Map.scss"
 
 export default function Button(props) {
   return (

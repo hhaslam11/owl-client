@@ -1,6 +1,8 @@
+@import "./variables";
+
 body { 
-  background-color: #3a506b;
-  color: #fff;
+  background-color: $bg-color;
+  color: $main-text-color;
 }
 
 img.owl {
