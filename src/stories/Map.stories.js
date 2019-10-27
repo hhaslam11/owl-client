@@ -1,5 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { action } from "@storybook/addon-console";
 
 import Map from '../Map'
 
@@ -45,6 +46,20 @@ storiesOf('Map', module)
         color="blue"
         width="400px"
         height="300px"
+      />
+    );
+  })
+  .add('Map with onClick functionality', () => {
+    
+    const onClick = e => {
+      console.log(e.target.dataItem.dataContext.name);
+      console.log(e.target.dataItem.dataContext.id);
+    };
+    
+    return (
+      <Map
+        color="blue"
+        onCountryClick={onClick}
       />
     );
   })

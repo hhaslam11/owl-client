@@ -12,6 +12,7 @@ import "./Map.scss"
  * @param {boolean} props.addZoomControl add the zoom control buttons to bottom of the map
  * @param {string} props.width the width of the map (default 100vw)
  * @param {string} props.height the height of the map (default 100vh)
+ * @param {function(event)} props.onCountryClick callback function when a country was clicked
  */
 export default function Map(props) {
   
@@ -41,6 +42,9 @@ export default function Map(props) {
     // Create hover state and set alternative fill color
     var hs = polygonTemplate.states.create("hover");
     hs.properties.fill = am4core.color(props.colorOnHover);
+
+    //Create click event
+    props.onCountryClick && polygonTemplate.events.on("hit", props.onCountryClick);
 
     // Remove Antarctica
     polygonSeries.exclude = ["AQ"];
