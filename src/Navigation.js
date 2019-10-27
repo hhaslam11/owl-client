@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
-
 import "./Navigation.scss";
 
 const useStyles = makeStyles(({
@@ -29,6 +28,7 @@ const useStyles = makeStyles(({
  * @param {string} props.title Main text displayed
  * @param {string} props.backgroundColor The background color
  * @param {string} props.color The text color
+ * @param {function} props.onMenuClick Callback function when user clicks on the menu button
  */
 export default function Map(props) {
   const classes = useStyles(props);
@@ -42,7 +42,7 @@ export default function Map(props) {
           </Typography>
 
           <IconButton edge="start" className={classes.menuButton}>
-            <MenuIcon />
+            <MenuIcon onClick={props.onMenuClick}/>
           </IconButton>
         </Toolbar>
       </AppBar>
