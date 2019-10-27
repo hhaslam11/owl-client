@@ -9,12 +9,12 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 import "./Navigation.scss";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(({
   root: {
     flexGrow: 1
   },
   navbar: {
-    backgroundColor: 'red'
+    backgroundColor: props => props.backgroundColor
   },
   title: {
     flexGrow: 1,
@@ -28,12 +28,12 @@ const useStyles = makeStyles(theme => ({
  * @param {type} props.value description
  */
 export default function Map(props) {
-  const classes = useStyles();
+  const classes = useStyles(props);
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Toolbar className={classes.navbar} >
+        <Toolbar className={classes.navbar}>
           <Typography variant="h6" className={classes.title}>
             Owl
           </Typography>
