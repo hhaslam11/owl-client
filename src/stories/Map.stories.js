@@ -5,6 +5,5 @@ import Map from '../Map'
 
 storiesOf('Map', module)
   .add('Map', () => (
-    <Map>
-    </Map>
+    <Map/>
   ));
