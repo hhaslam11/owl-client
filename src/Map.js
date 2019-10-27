@@ -10,6 +10,8 @@ import "./Map.scss"
  * @param {string} props.colorOnHover The color of a country on hover
  * @param {array} props.data per-country data
  * @param {boolean} props.addZoomControl add the zoom control buttons to bottom of the map
+ * @param {string} props.width the width of the map (default 100vw)
+ * @param {string} props.height the height of the map (default 100vh)
  */
 export default function Map(props) {
   
@@ -61,7 +63,10 @@ export default function Map(props) {
 
   }, 0);
 
+  const height = props.height || "100vh";
+  const width  = props.width  || "100vw";
+
   return (
-    <div id="mapdiv" style={{ width: "100vw", height: "100vh" }}></div>
+    <div id="mapdiv" style={{ width, height }}></div>
   )
 }

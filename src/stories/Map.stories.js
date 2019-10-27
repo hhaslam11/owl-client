@@ -39,6 +39,15 @@ storiesOf('Map', module)
       />
     );
   })
+  .add('Map with custom size', () => {
+    return (
+      <Map
+        color="blue"
+        width="400px"
+        height="300px"
+      />
+    );
+  })
   .add('Fully functional map', () => {
     const data = [{
       "id": "US",
