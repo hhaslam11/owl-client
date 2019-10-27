@@ -4,10 +4,7 @@ import './App.scss';
 
 function App() {
   return (
-    <Map
-      color="red"
-      colorOnHover="blue"
-    />
+    <h1>Owl</h1>
   );
 }
 

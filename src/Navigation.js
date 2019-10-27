@@ -18,14 +18,17 @@ const useStyles = makeStyles(({
   },
   title: {
     flexGrow: 1,
+    color: props => props.color || 'white'
   },
   menuButton: {
-    color: 'white'
+    color: props => props.color || 'white'
   }
 }));
 
 /**
- * @param {type} props.value description
+ * @param {string} props.title Main text displayed
+ * @param {string} props.backgroundColor The background color
+ * @param {string} props.color The text color
  */
 export default function Map(props) {
   const classes = useStyles(props);
@@ -35,7 +38,7 @@ export default function Map(props) {
       <AppBar position="static">
         <Toolbar className={classes.navbar}>
           <Typography variant="h6" className={classes.title}>
-            Owl
+            {props.title || 'Home'}
           </Typography>
 
           <IconButton edge="start" className={classes.menuButton}>
