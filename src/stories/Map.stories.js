@@ -4,8 +4,42 @@ import { storiesOf } from '@storybook/react';
 import Map from '../Map'
 
 storiesOf('Map', module)
-  .add('Map', () => {
-    
+  .add('Map skeleton', () => {
+    return (<Map color="blue"/>)
+  })
+  .add('Map with hover color', () => {
+    return (
+      <Map
+        color="#043565"
+        colorOnHover="#5158bb"
+      />
+    );
+  })
+  .add('Map with custom country data', () => {
+    const data = [{
+      "id": "US",
+      "fill": "#F05C5C"
+    }, {
+      "id": "FR",
+      "fill": "yellow"
+    }]
+
+    return (
+      <Map
+        color="blue"
+        data={data}
+      />
+    );
+  })
+  .add('Map with zoom control buttons', () => {
+    return (
+      <Map
+        color="blue"
+        addZoomControl={true}
+      />
+    );
+  })
+  .add('Fully functional map', () => {
     const data = [{
       "id": "US",
       "fill": "#F05C5C"
