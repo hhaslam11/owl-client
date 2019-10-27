@@ -4,7 +4,10 @@ import './App.scss';
 
 function App() {
   return (
-    <Map/>
+    <Map
+      color="red"
+      colorOnHover="blue"
+    />
   );
 }
 

@@ -9,6 +9,7 @@ import "./Map.scss"
  * @param {string} props.color The default color of the countries
  * @param {string} props.colorOnHover The color of a country on hover
  * @param {array} props.data per-country data
+ * @param {boolean} props.addZoomControl add the zoom control buttons to bottom of the map
  */
 export default function Map(props) {
   
@@ -56,7 +57,8 @@ export default function Map(props) {
     imageSeries.propertyFields.longitude = "longitude";
 
     // Add zoom control
-    map.zoomControl = new am4maps.ZoomControl();
+    if (props.addZoomControl) map.zoomControl = new am4maps.ZoomControl();
+
   }, 0);
 
   return (

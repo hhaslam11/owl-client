@@ -19,6 +19,7 @@ storiesOf('Map', module)
         color="#043565"
         colorOnHover="#5158bb"
         data={data}
+        addZoomControl={true}
       />
     );
   });
