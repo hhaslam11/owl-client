@@ -5,6 +5,11 @@ import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
 
 import "./Map.scss"
 
+/**
+ * @param {string} props.color The default color of the countries
+ * @param {string} props.colorOnHover The color of a country on hover
+ * @param {array} props.data per-country data
+ */
 export default function Map(props) {
   
   //TODO
@@ -28,17 +33,17 @@ export default function Map(props) {
     // Configure series
     var polygonTemplate = polygonSeries.mapPolygons.template;
     polygonTemplate.tooltipText = "{name}";
-    polygonTemplate.fill = am4core.color("#043565");
+    polygonTemplate.fill = am4core.color(props.color);
 
     // Create hover state and set alternative fill color
     var hs = polygonTemplate.states.create("hover");
-    hs.properties.fill = am4core.color("#5158bb");
+    hs.properties.fill = am4core.color(props.colorOnHover);
 
     // Remove Antarctica
     polygonSeries.exclude = ["AQ"];
 
     // Add some data
-    polygonSeries.data = [];
+    polygonSeries.data = props.data;
 
     // Bind "fill" property to "fill" key in data
     polygonTemplate.propertyFields.fill = "fill";
