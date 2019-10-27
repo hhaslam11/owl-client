@@ -1,12 +1,15 @@
 import React from "react";
 
+import Drawer from '@material-ui/core/Drawer';
+
 import "./Sidebar.scss";
 
 /**
- * @param {type} props.value description
+ * @param {boolean} props.open is sidebar visible
  */
 export default function Sidebar(props) {
-  
-
-  return (<h1>Sidebar</h1>);
+  return (
+    <Drawer anchor="right" open={props.isOpen}>
+      {props.listItems}
+    </Drawer>);
 }
