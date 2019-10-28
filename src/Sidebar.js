@@ -30,6 +30,7 @@ const useStyles = makeStyles(({
  * @param {array} props.listItems
  * @param {string} props.color the text color (Icon colors need to be done in parent element)
  * @param {string} props.backgroundColor the background color
+ * @param {string} props.anchor left || right - side of the screen to show on. Default right
  */
 export default function Sidebar(props) {
   const classes = useStyles(props);
@@ -37,13 +38,13 @@ export default function Sidebar(props) {
   return (
     <Drawer 
       classes={{ paper: classes.paper }}
-      anchor="right"
+      anchor={props.anchor === 'left' ? 'left' : 'right'}
       open={props.isOpen}
       variant="persistent"
     >
       <div className={classes.header}>
         <IconButton onClick={props.onClose}>
-          <ChevronRightIcon />
+          {props.anchor === 'left' ? <ChevronLeftIcon /> : <ChevronRightIcon/>}
         </IconButton>
       </div>
       <Divider/>
