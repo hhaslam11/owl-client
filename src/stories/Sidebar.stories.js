@@ -11,6 +11,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 
 import Sidebar from '../Sidebar'
+import Navigation from '../Navigation'
 
 //This is example data for what would go into the sidebar
 const sideList = (
@@ -50,7 +51,16 @@ storiesOf('Sidebar', module)
       </>
     )
   })
-  .add('with custom colors', () => <Sidebar isOpen={true} listItems={sideList} color={'yellow'} backgroundColor={'purple'} />);
+  .add('with custom colors', () => <Sidebar isOpen={true} listItems={sideList} color={'yellow'} backgroundColor={'purple'} />)
+  .add('with navbar', () => {
+    
+    return (
+      <>
+        <Navigation />
+        <Sidebar isOpen={true} listItems={sideList} />
+      </>
+    )
+  });
 
 /*
 because im lazy:
