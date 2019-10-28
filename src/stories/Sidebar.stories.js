@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
+import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
@@ -11,6 +12,7 @@ import MailIcon from '@material-ui/icons/Mail';
 
 import Sidebar from '../Sidebar'
 
+//This is example data for what would go into the sidebar
 const sideList = (
   <div
     role="presentation"
@@ -37,11 +39,18 @@ const sideList = (
 
 storiesOf('Sidebar', module)
   .add('Sidebar closed', () => <Sidebar listItems={sideList}/>)
-  .add('Sidebar opened', () => <Sidebar listItems={sideList} isOpen={true} />);
-  // .add('Sidebar toggle', () => {
-
-  //   return <Sidebar listItems={sideList} />
-  // });
+  .add('Sidebar opened', () => <Sidebar listItems={sideList} isOpen={true} />)
+  .add('Sidebar toggle', () => {
+    const [open, setOpen] = React.useState(false);
+    
+    return (
+      <>
+        <Button onClick={() => setOpen(true)}>Open sidebar</Button>
+        <Sidebar listItems={sideList} isOpen={open} onClose={() => setOpen(false)}/>
+      </>
+    )
+  })
+  .add('with custom colors', () => <Sidebar isOpen={true} listItems={sideList} color={'yellow'} backgroundColor={'purple'} />);
 
 /*
 because im lazy:
