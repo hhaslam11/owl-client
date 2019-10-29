@@ -42,6 +42,7 @@ storiesOf('Sidebar', module)
   .add('Sidebar closed', () => <Sidebar listItems={sideList}/>)
   .add('Sidebar opened', () => <Sidebar listItems={sideList} isOpen={true} />)
   .add('Sidebar toggle', () => {
+    //using state to toggle the sidebar
     const [open, setOpen] = React.useState(false);
     
     return (

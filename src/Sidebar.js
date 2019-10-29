@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
@@ -10,7 +10,6 @@ import "./Sidebar.scss";
 import { Divider } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
-  root: {},
   paper: {
     backgroundColor: props => props.backgroundColor,
     color: props => props.color,
@@ -27,11 +26,24 @@ const useStyles = makeStyles(theme => ({
 /**
  * @param {boolean} props.isOpen is sidebar visible
  * @param {function} props.onClose callback function to run when close request is sent (usually you want it to change state)
- * @param {array} props.listItems
+ * @param {array} props.listItems the content of the sidebar (usually a <List>, see below for an example)
  * @param {string} props.color the text color (Icon colors need to be done in parent element)
  * @param {string} props.backgroundColor the background color
  * @param {string} props.anchor left || right - side of the screen to show on. Default right
+ * 
+ * An example of what props.listItems might look like
+ * <List>
+ *  <ListItem>
+ *    <ListItemIcon><MailIcon /></ListItemIcon>
+ *    <ListItemText primary={text} />
+ *  </ListItem>
+ *  <ListItem>
+ *    <ListItemIcon><InboxIcon /></ListItemIcon>
+ *    <ListItemText primary={text} />
+ *  </ListItem>
+ * <List>
  */
+
 export default function Sidebar(props) {
   const classes = useStyles(props);
   
