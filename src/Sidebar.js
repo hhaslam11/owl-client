@@ -32,7 +32,9 @@ const useStyles = makeStyles(theme => ({
  * @param {string} props.anchor left || right - side of the screen to show on. Default right
  * @param {boolean} props.displayUnderNavigation true if you want it to show under the navbar instead of on top. Default false
  * 
- * An example of what props.listItems might look like
+ * An example of what props.listItems might look like.
+ * More info at https://material-ui.com/components/lists/
+ * ```
  * <List>
  *  <ListItem>
  *    <ListItemIcon><MailIcon /></ListItemIcon>
@@ -43,8 +45,8 @@ const useStyles = makeStyles(theme => ({
  *    <ListItemText primary={text} />
  *  </ListItem>
  * <List>
+ * ```
  */
-
 export default function Sidebar(props) {
   const classes = useStyles(props);
   
