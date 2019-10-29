@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import Map from '../Map'
+import Map from '../Map';
 
 storiesOf('Map', module)
   .add('Map skeleton', () => {
@@ -22,7 +22,7 @@ storiesOf('Map', module)
     }, {
       "id": "FR",
       "fill": "yellow"
-    }]
+    }];
 
     return (
       <Map
@@ -69,7 +69,7 @@ storiesOf('Map', module)
     }, {
       "id": "FR",
       "fill": "#5C5CFF"
-    }]
+    }];
 
     return (
       <Map

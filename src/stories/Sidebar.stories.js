@@ -10,8 +10,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 
-import Sidebar from '../Sidebar'
-import Navigation from '../Navigation'
+import Sidebar from '../Sidebar';
+import Navigation from '../Navigation';
 
 //This is example data for what would go into the sidebar
 const sideList = (
