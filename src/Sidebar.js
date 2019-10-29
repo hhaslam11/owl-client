@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     justifyContent: 'flex-start'
   },
-  toolbar: theme.mixins.toolbar
+  toolbar: props => props.displayUnderNavigation && theme.mixins.toolbar
 }));
 
 /**
@@ -30,6 +30,7 @@ const useStyles = makeStyles(theme => ({
  * @param {string} props.color the text color (Icon colors need to be done in parent element)
  * @param {string} props.backgroundColor the background color
  * @param {string} props.anchor left || right - side of the screen to show on. Default right
+ * @param {boolean} props.displayUnderNavigation true if you want it to show under the navbar instead of on top. Default false
  * 
  * An example of what props.listItems might look like
  * <List>

@@ -58,7 +58,7 @@ storiesOf('Sidebar', module)
     return (
       <>
         <Navigation />
-        <Sidebar isOpen={true} listItems={sideList} />
+        <Sidebar isOpen={true} listItems={sideList} displayUnderNavigation={true} />
       </>
     )
   });
