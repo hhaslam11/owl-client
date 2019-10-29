@@ -54,7 +54,6 @@ storiesOf('Sidebar', module)
   .add('with custom colors', () => <Sidebar isOpen={true} listItems={sideList} color={'yellow'} backgroundColor={'purple'} />)
   .add('anchored on left side', () => <Sidebar isOpen={true} listItems={sideList} anchor='left' />)
   .add('with navbar', () => {
-    
     return (
       <>
         <Navigation />

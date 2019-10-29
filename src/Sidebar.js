@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
@@ -9,19 +9,19 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import "./Sidebar.scss";
 import { Divider } from "@material-ui/core";
 
-const useStyles = makeStyles(({
+const useStyles = makeStyles(theme => ({
   root: {},
   paper: {
     backgroundColor: props => props.backgroundColor,
     color: props => props.color,
-    // zIndex: 0,
-    marginTop: "100p"
+    zIndex: 0
   },
-  header: {
+  footer: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-start'
-  }
+  },
+  toolbar: theme.mixins.toolbar
 }));
 
 /**
@@ -42,7 +42,8 @@ export default function Sidebar(props) {
       open={props.isOpen}
       variant="persistent"
     >
-      <div className={classes.header}>
+      <div className={classes.toolbar} />
+      <div className={classes.footer}>
         <IconButton onClick={props.onClose}>
           {props.anchor === 'left' ? <ChevronLeftIcon /> : <ChevronRightIcon/>}
         </IconButton>

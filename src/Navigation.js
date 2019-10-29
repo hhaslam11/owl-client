@@ -8,12 +8,13 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 import "./Navigation.scss";
 
-const useStyles = makeStyles(({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
   },
   navbar: {
-    backgroundColor: props => props.backgroundColor
+    backgroundColor: props => props.backgroundColor,
+    zIndex: theme.zIndex.drawer + 1
   },
   title: {
     flexGrow: 1,
