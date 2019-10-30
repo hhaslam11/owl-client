@@ -28,6 +28,7 @@ const useStyles = makeStyles(({
  * @param {function} props.usernameOnChange callback function for when username gets changed (value is passed as argument)
  * @param {function} props.emailOnChange callback function for when email gets changed (value is passed as argument)
  * @param {function} props.passwordOnChange callback function for when password gets changed (value is passed as argument)
+ * @param {function} props.passwordConfirmOnChange callback function for when password gets changed (value is passed as argument)
  * @param {function} props.onSumbit callback function for when the submit button is clicked
  * @param {function} props.onCancel callback function for when the cancel button is clicked
  */
@@ -49,6 +50,7 @@ export default function Register(props) {
                 label="Email Address"
                 name="email"
                 value={props.emailValue}
+                onChange={value => props.emailOnChange(value.target.value)}
                 autoFocus
               />
             </Grid>
@@ -62,6 +64,7 @@ export default function Register(props) {
                 id="username"
                 label="Username"
                 value={props.usernameValue}
+                onChange={value => props.usernameOnChange(value.target.value)}
               />
             </Grid>
 
@@ -74,7 +77,7 @@ export default function Register(props) {
                 type="password"
                 id="password"
                 value={props.passwordValue}
-                autoComplete="current-password"
+                onChange={value => props.passwordOnChange(value.target.value)}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -85,7 +88,7 @@ export default function Register(props) {
                 label="Password Confirm"
                 type="password"
                 id="passwordConfirm"
-                autoComplete="current-password"
+                onChange={value => props.passwordConfirmOnChange(value.target.value)}
               />
             </Grid>
             <Grid item xs={12}>

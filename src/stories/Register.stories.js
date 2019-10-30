@@ -4,6 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { Button } from '@material-ui/core';
 
 import Register from '../Register'
+import { statement } from '@babel/template';
 
 storiesOf('Register', module)
   .add('Register', () => <Register open />)
@@ -32,7 +33,69 @@ storiesOf('Register', module)
       </>
     )
   })
-  .add('Full demo', () => {})
+  .add('Full demo', () => {
+    const [state, setState] = useState({
+      open: false,
+      email: '',
+      username: '',
+      password: '',
+      passwordConfirm: '',
+      error: ''
+    });
+
+    const validate = () => {
+      if (state.password !== state.passwordConfirm) {
+        setState({ ...state, error: 'Passwords do not match.' });
+        return;
+      }
+      if (!state.email) {
+        setState({ ...state, error: 'Email cannot be blank' });
+        return;
+      }
+      if (!state.username) {
+        setState({ ...state, error: 'Username cannot be blank' });
+        return;
+      }
+      if (!state.password) {
+        setState({ ...state, error: 'Password cannot be blank' });
+        return;
+      }
+      setState({ ...statement, open: false, email: 'Successfully registered' });
+    };
+
+    const cancel = () => {
+      setState({ ...state, passwordConfirm: '', open: false });
+    };
+
+    return (
+      <>
+        <p>Email: {state.email}</p>
+        <p>Username: {state.username}</p>
+        <p>Password: {state.password}</p>
+        <p>Password confirm: {state.passwordConfirm}</p>
+        <Button onClick={() => setState({ ...state, open: true })}>Register</Button>
+        <Register 
+          title="Create an account 🦉"
+          open={state.open}
+
+          emailValue={state.email}
+          emailOnChange={(value) => setState({ ...state, email: value })}
+
+          usernameValue={state.username}
+          usernameOnChange={(value) => setState({ ...state, username: value })}
+
+          passwordValue={state.password}
+          passwordOnChange={(value) => setState({ ...state, password: value })}
+          passwordConfirmOnChange={(value) => setState({ ...state, passwordConfirm: value })}
+
+          onSubmit={validate}
+          onCancel={cancel}
+
+          error={state.error}
+        />
+      </>
+    )
+  })
   ;
 /*
 because im lazy:
