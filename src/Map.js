@@ -21,6 +21,7 @@ export default function Map(props) {
   //before this code runs, so this function has to and return the div first.
   //This is probably a terrible way of doing this, and should be fixed
   setTimeout(() => {
+    
     //create map instance
     let map = am4core.create("mapdiv", am4maps.MapChart);
     map.geodata = am4geodata_worldLow;  

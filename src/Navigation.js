@@ -22,8 +22,6 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
-import MenuList from '@material-ui/core/MenuList';
-import MenuItem from '@material-ui/core/MenuItem';
 
 import "./Navigation.scss";
 
@@ -48,6 +46,15 @@ const useStyles = makeStyles(theme => ({
  * @param {string} props.title Main text displayed
  * @param {string} props.backgroundColor The background color
  * @param {string} props.color The text color
+ * @param {JSX} props.menuList a MenuList for when the hamburger menu is clicked (see example below)
+ * 
+ * ```
+ * <MenuList>
+ *   <MenuItem>Inbox</MenuItem>
+ *   <MenuItem>My Account</MenuItem>
+ *   <MenuItem>Logout</MenuItem>
+ * </MenuList>
+ * ```
  */
 export default function Map(props) {
   const classes = useStyles(props);
@@ -85,11 +92,7 @@ export default function Map(props) {
           >
             <Paper id="menu-list-grow">
               <ClickAwayListener onClickAway={() => setMenu(false)}>
-                <MenuList>
-                  <MenuItem>Inbox</MenuItem>
-                  <MenuItem>Post Office</MenuItem>
-                  <MenuItem>Logout</MenuItem>
-                </MenuList>
+                {props.menuList}
               </ClickAwayListener>
             </Paper>
           </Grow>
