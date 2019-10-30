@@ -30,7 +30,7 @@ export default function Map(props) {
 
     // Create map polygon series
     var polygonSeries = map.series.push(new am4maps.MapPolygonSeries());
-
+    
     // Make map load polygon (like country names) data from GeoJSON
     polygonSeries.useGeodata = true;
 
@@ -71,6 +71,6 @@ export default function Map(props) {
   const width  = props.width  || "100vw";
 
   return (
-    <div id="mapdiv" style={{ width, height }}></div>
+    <div id="mapdiv" style={{ width, height, zIndex: 1 }}></div>
   )
 }
