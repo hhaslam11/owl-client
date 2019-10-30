@@ -79,14 +79,14 @@ storiesOf('Register', module)
           open={state.open}
 
           emailValue={state.email}
-          emailOnChange={(value) => setState({ ...state, email: value })}
+          emailOnChange={(value) => setState({ ...state, email: value, error: '' })}
 
           usernameValue={state.username}
-          usernameOnChange={(value) => setState({ ...state, username: value })}
+          usernameOnChange={(value) => setState({ ...state, username: value, error: '' })}
 
           passwordValue={state.password}
-          passwordOnChange={(value) => setState({ ...state, password: value })}
-          passwordConfirmOnChange={(value) => setState({ ...state, passwordConfirm: value })}
+          passwordOnChange={(value) => setState({ ...state, password: value, error: '' })}
+          passwordConfirmOnChange={(value) => setState({ ...state, passwordConfirm: value, error: '' })}
 
           onSubmit={validate}
           onCancel={cancel}

@@ -21,10 +21,10 @@ const useStyles = makeStyles(({
 /**
  * @param {boolean} props.open is the modal visible or not
  * @param {string} props.title title of the modal (default "Create an account")
+ * @param {string} props.error general error message if something went wrong
  * @param {string} props.usernameValue fill username form with a value
  * @param {string} props.emailValue fill email form with a value
  * @param {string} props.passwordValue fill password form with a value
- * @param {string} props.error general error message if something went wrong
  * @param {function} props.usernameOnChange callback function for when username gets changed (value is passed as argument)
  * @param {function} props.emailOnChange callback function for when email gets changed (value is passed as argument)
  * @param {function} props.passwordOnChange callback function for when password gets changed (value is passed as argument)
