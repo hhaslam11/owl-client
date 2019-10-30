@@ -13,7 +13,8 @@ const useStyles = makeStyles(theme => ({
   paper: {
     backgroundColor: props => props.backgroundColor,
     color: props => props.color,
-    zIndex: 0
+    zIndex: 2,
+    width: props => props.width
   },
   footer: {
     display: 'flex',
@@ -31,6 +32,7 @@ const useStyles = makeStyles(theme => ({
  * @param {string} props.backgroundColor the background color
  * @param {string} props.anchor left || right - side of the screen to show on. Default right
  * @param {boolean} props.displayUnderNavigation true if you want it to show under the navbar instead of on top. Default false
+ * @param {string} props.width width of the sidebar
  * 
  * An example of what props.listItems might look like.
  * More info at https://material-ui.com/components/lists/
