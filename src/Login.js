@@ -32,7 +32,7 @@ const useStyles = makeStyles(({
  * @param {function} props.onSumbit callback function for when the submit button is clicked
  * @param {function} props.onCancel callback function for when the cancel button is clicked
  */
-export default function Map(props) {
+export default function Login(props) {
   const classes = useStyles();
 
   return (
