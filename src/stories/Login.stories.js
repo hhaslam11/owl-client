@@ -6,11 +6,11 @@ import Login from '../Login'
 import { Button } from '@material-ui/core';
 
 storiesOf('Login', module)
-  .add('Login', () => <Login open={true}/>)
-  .add('with email error', () => <Login open={true} emailError='Email address not found' />)
-  .add('with password error', () => <Login open={true} passwordError='Password is incorrect' />)
-  .add('with general error', () => <Login open={true} generalError='Email or password is incorrect' />)
-  .add('with filled values', () => <Login open={true} emailValue='CoolOwl@example.com' passwordValue='Hunter2' />)
+  .add('Login', () => <Login open/>)
+  .add('with email error', () => <Login open emailError='Email address not found' />)
+  .add('with password error', () => <Login open passwordError='Password is incorrect' />)
+  .add('with general error', () => <Login open generalError='Email or password is incorrect' />)
+  .add('with filled values', () => <Login open emailValue='CoolOwl@example.com' passwordValue='Hunter2' />)
   .add('with email and password change', () => {
     const [state, setState] = useState({
       passwordError: 'Password cannot be empty!',
@@ -19,7 +19,7 @@ storiesOf('Login', module)
 
     return (
       <Login
-        open={true}
+        open
         emailError={state.emailError}
         emailOnChange={() => {setState({...state, emailError: null})}}
         passwordError={state.passwordError}

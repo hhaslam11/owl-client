@@ -40,7 +40,7 @@ const sideList = (
 
 storiesOf('Sidebar', module)
   .add('Sidebar closed', () => <Sidebar listItems={sideList}/>)
-  .add('Sidebar opened', () => <Sidebar listItems={sideList} isOpen={true} />)
+  .add('Sidebar opened', () => <Sidebar listItems={sideList} isOpen />)
   .add('Sidebar toggle', () => {
     //using state to toggle the sidebar
     const [open, setOpen] = React.useState(false);
@@ -52,13 +52,13 @@ storiesOf('Sidebar', module)
       </>
     )
   })
-  .add('with custom colors', () => <Sidebar isOpen={true} listItems={sideList} color={'yellow'} backgroundColor={'purple'} />)
-  .add('anchored on left side', () => <Sidebar isOpen={true} listItems={sideList} anchor='left' />)
+  .add('with custom colors', () => <Sidebar isOpen listItems={sideList} color={'yellow'} backgroundColor={'purple'} />)
+  .add('anchored on left side', () => <Sidebar isOpen listItems={sideList} anchor='left' />)
   .add('with navbar', () => {
     return (
       <>
         <Navigation />
-        <Sidebar isOpen={true} listItems={sideList} displayUnderNavigation={true} />
+        <Sidebar isOpen listItems={sideList} displayUnderNavigation={true} />
       </>
     )
   });
