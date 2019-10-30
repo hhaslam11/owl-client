@@ -67,8 +67,10 @@ export default function Map(props) {
   };
 
   const handleMenuClick = event => {
-    setAnchorEl(event.target);
-    toggleMenu();
+    if (props.menuList) {
+      setAnchorEl(event.target);
+      toggleMenu();
+    }
   };
 
   return (
