@@ -19,21 +19,21 @@ import Sidebar from './Sidebar';
 import Map from './Map';
 
 
-const navMenu = (
-  <MenuList>
-    <MenuItem>Inbox</MenuItem>
-    <MenuItem>Post Office</MenuItem>
-    <MenuItem>Logout</MenuItem>
-  </MenuList>
-)
-
-export default function Dashboard() {
+export default function Dashboard(props) {
 
   const [state, setState] = useState({
     open: false,
     selected: null,
     countryName: null
   });
+
+  const navMenu = (
+    <MenuList>
+      <MenuItem>Inbox</MenuItem>
+      <MenuItem>Post Office</MenuItem>
+      <MenuItem onClick={props.logout}>Logout</MenuItem>
+    </MenuList>
+  )
 
   const onCountryClick = event => {
     setState({

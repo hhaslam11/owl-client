@@ -14,7 +14,7 @@ export default function App() {
   
   return (
     <>
-      {state.loggedIn ? <Dashboard/> : <Landing/>}
+      {state.loggedIn ? <Dashboard logout={() => {setState({ ...state, loggedIn: false })}} /> : <Landing login={() => {setState({ ...state, loggedIn: true })}} />}
     </>
   );
 }
