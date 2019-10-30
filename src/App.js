@@ -6,11 +6,10 @@ import './App.scss';
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
 
-import Navigation from './Navigation'
-import Map from './Map'
-import Sidebar from './Sidebar'
-import Register from './Register'
-import Login from './Login'
+import Navigation from './Navigation';
+import Map from './Map';
+import Register from './Register';
+import Login from './Login';
 
 
 const navMenu = (

@@ -49,11 +49,11 @@ const useStyles = makeStyles(theme => ({
 export default function Map(props) {
   const classes = useStyles(props);
 
-  const [menu, setMenu] = useState(false);
+  const [open, setOpen] = useState(false);
   const anchorRef = React.useRef(null);
   
   const toggleMenu = () => {
-    setMenu(!menu);
+    setOpen(!open);
   };
 
   const handleMenuClick = event => {
@@ -75,14 +75,14 @@ export default function Map(props) {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <Popper open={menu} anchorEl={anchorRef.current} transition disablePortal>
+      <Popper style={{ zIndex: 3 }} open={open} anchorEl={anchorRef.current} transition disablePortal>
         {({ TransitionProps }) => (
           <Grow
             {...TransitionProps}
             style={{ marginTop: '10px', transformOrigin: 'center top' }}
           >
             <Paper id="menu-list-grow">
-              <ClickAwayListener onClickAway={() => setMenu(false)}>
+              <ClickAwayListener onClickAway={() => setOpen(false)}>
                 {props.menuList}
               </ClickAwayListener>
             </Paper>
