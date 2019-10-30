@@ -34,11 +34,11 @@ storiesOf('Login', module)
 
     return (
       <>
-      <Button onClick={() => {setState({ ...state, open: true })}}>Login</Button>
-      <Login
-        open={state.open}
-        onCancel={() => setState({...state, open: false})}
-      />
+        <Button onClick={() => {setState({ ...state, open: true })}}>Login</Button>
+        <Login
+          open={state.open}
+          onCancel={() => setState({...state, open: false})}
+        />
       </>
     )
   })

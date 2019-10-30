@@ -43,12 +43,12 @@ export default function Register(props) {
 
             <Grid item xs={12} sm={6}>
               <TextField
-                variant="outlined"
                 required
+                variant="outlined"
                 id="email"
                 label="Email Address"
                 name="email"
-                autoComplete="email"
+                value={props.emailValue}
                 autoFocus
               />
             </Grid>
@@ -61,6 +61,7 @@ export default function Register(props) {
                 required
                 id="username"
                 label="Username"
+                value={props.usernameValue}
               />
             </Grid>
 
@@ -72,6 +73,7 @@ export default function Register(props) {
                 label="Password"
                 type="password"
                 id="password"
+                value={props.passwordValue}
                 autoComplete="current-password"
               />
             </Grid>
