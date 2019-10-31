@@ -37,19 +37,21 @@ export default function Landing(props) {
 
   return (
     <>
-      <Button style={{ backgroundColor: 'white' }} onClick={() => {setState({ ...state, open: true })}}>Login</Button>
+      <img height="500px" alt="owl logo" src="/images/owltakingovertheworld.png"/>
+      <br/>
+      <Button variant="contained" size="large" color="primary" onClick={() => {setState({ ...state, open: true })}}>Login</Button>
       <Login
         open={state.open}
         generalError={state.generalError}
-    
+
         emailValue={state.email}
         emailOnChange={(value) => setState({...state, email: value, emailError: null})}
         emailError={state.emailError}
-    
+
         passwordValue={state.password}
         passwordOnChange={(value) => setState({...state, password: value, passwordError: null})}
         passwordError={state.passwordError}
-    
+
         onCancel={() => setState({...state, open: false})}
         onSubmit={() => validate(state.email, state.password)}
       />
