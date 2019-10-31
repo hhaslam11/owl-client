@@ -6,11 +6,29 @@ import './App.scss';
 import Dashboard from './Dashboard';
 import Landing from './Landing';
 
+
 export default function App() {
   const [state, setState] = useState({
-    loggedIn: true,
+    loggedIn: false,
     userId: null
   });
+  
+  console.log(`
+／￣￣￣￣￣￣\\
+|　Welcome! |
+＼＿＿ ＿＿＿/
+　　　∨
+  __________
+/ ___  ___ \\
+/ / @ \\/ @ \\ \\
+\\ \\___/\\___/ /\\
+\\____\\/____/||
+/     /\\\\\\\\\\//
+|     |\\\\\\\\\\\\
+\\      \\\\\\\\\\\\
+  \\______/\\\\\\\\
+   _||_||_
+  `);
   
   return (
     <>
