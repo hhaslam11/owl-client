@@ -18,7 +18,10 @@ import Navigation from './Navigation';
 import Sidebar from './Sidebar';
 import Map from './Map';
 
-
+/**
+ * 
+ * @param {function} props.logout the function to call when user clicks logout
+ */
 export default function Dashboard(props) {
 
   const [state, setState] = useState({
