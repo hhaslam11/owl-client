@@ -41,6 +41,7 @@
     "@storybook/addon-console": "^1.2.1",
     "@storybook/addon-links": "^5.2.5",
     "@storybook/addons": "^5.2.5",
-    "@storybook/react": "^5.2.5"
+    "@storybook/react": "^5.2.5",
+    "storybook-dark-mode": "^0.1.9"
   }
 }
