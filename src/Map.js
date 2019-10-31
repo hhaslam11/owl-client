@@ -8,6 +8,7 @@ import "./Map.scss"
 /**
  * @param {string} props.color The default color of the countries
  * @param {string} props.colorOnHover The color of a country on hover
+ * @param {string} props.borderColor The color of a country borders
  * @param {array} props.data per-country data
  * @param {boolean} props.addZoomControl add the zoom control buttons to bottom of the map
  * @param {string} props.width the width of the map (default 100vw)
@@ -39,6 +40,7 @@ export default function Map(props) {
     var polygonTemplate = polygonSeries.mapPolygons.template;
     polygonTemplate.tooltipText = "{name}";
     polygonTemplate.fill = am4core.color(props.color);
+    polygonTemplate.stroke = am4core.color(props.borderColor || 'white');
 
     // Create hover state and set alternative fill color
     var hs = polygonTemplate.states.create("hover");

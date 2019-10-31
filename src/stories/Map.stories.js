@@ -15,6 +15,14 @@ storiesOf('Map', module)
       />
     );
   })
+  .add('Map with border color', () => {
+    return (
+      <Map
+        color="#043565"
+        borderColor="#5158bb"
+      />
+    );
+  })
   .add('Map with custom country data', () => {
     const data = [{
       "id": "US",
@@ -75,6 +83,7 @@ storiesOf('Map', module)
       <Map
         color="#043565"
         colorOnHover="#5158bb"
+        borderColor="#5158bb"
         data={data}
         addZoomControl={true}
       />
