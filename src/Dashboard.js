@@ -84,6 +84,7 @@ export default function Dashboard(props) {
       <Map
         color="#358c4b"
         colorOnHover="#286b39"
+        borderColor="#286b39"
         onCountryClick={onCountryClick}
         data={[{
           id: state.selected,

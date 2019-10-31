@@ -9,6 +9,8 @@ import { Button } from '@material-ui/core';
 import "./Landing.scss";
 
 const GENERIC_ERROR = "Something went wrong. Please try again";
+// const API_SERVER    = "http://192.168.88.214:3000";
+const API_SERVER    = "http://localhost:3000";
 
 export default function Landing(props) {
   const [login, setLogin] = useState({
@@ -40,15 +42,29 @@ export default function Landing(props) {
       setLogin({...login, passwordError: 'password cannot be blank'});
       return;
     }
-    if (email === 'owl@example.com' && password === 'coolowl') {
-      setLogin({ ...login, email: null, password: null, open: false });
-      props.login();
-    } else {
-      setLogin({...login, generalError: 'Email or password incorrect'});
-    }
+      
+    axios.post(`${API_SERVER}/login`, {
+      email: login.email,
+      password: login.password
+    })
+    .then(r => {
+      if (r.data.status !== 'ERROR') {
+        props.login()
+        setLogin({ ...login, email: null, password: null, open: false });
+      } else {
+        setLogin({ ...login, generalError: 'Email or password incorrect' });
+      }
+    })
+    .catch(e => {
+      console.error(e);
+      setLogin({...login, generalError: GENERIC_ERROR});
+    });
+    
   };
 
   const validateRegister = () => {
+    
+    //Local verification before bothering API
     if (register.password !== register.passwordConfirm) {
       setRegister({ ...register, error: 'Passwords do not match.' });
       return;
@@ -66,10 +82,11 @@ export default function Landing(props) {
       return;
     }
     
-    axios.post('httpa://192.168.88.214:3000/users', {
+    axios.post(`${API_SERVER}/users`, {
       email: register.email,
       username: register.username,
       password: register.password,
+      password_confirmation: register.passwordConfirm
     })
     .then(r => {
       if (r.data.status === "ERROR") {
