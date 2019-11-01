@@ -1,0 +1,22 @@
+@import "../variables";
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
+
+.reply {
+  border: 2px solid lightgray;
+  border-radius: 10px;
+
+  // background-color: lighten($bg-color, 20%);
+  // color: $main-text-color;
+
+  font-size: 20px;
+  font-family: 'Indie Flower', cursive;
+
+  width: 100%;
+  min-height: 300px;
+  resize: vertical;
+}
+
+.reply-header {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

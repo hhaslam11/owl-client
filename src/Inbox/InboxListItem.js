@@ -25,7 +25,7 @@ export default function Inbox(props) {
   return (
     <>
     <ListItem button>
-      <ListItemAvatar>
+      <ListItemAvatar style={{minWidth: "90px"} /* TODO maybe don't hardcode this */}>
         <img className="flag" alt={`${props.country} flag`} src={props.flag} />
       </ListItemAvatar>
       
