@@ -2,11 +2,10 @@ import React from "react";
 
 // Material ui
 import List from '@material-ui/core/List';
+import { makeStyles } from '@material-ui/core/styles';
 
 import Sidebar from '../Sidebar';
 import InboxListItem from '../Inbox/InboxListItem';
-
-import './Inbox.scss';
 
 //This is just driver data, it will eventually be
 //generated based off api data
@@ -62,16 +61,48 @@ const list = (
     />
   </List>
 )
+//END DRIVER DATA
+//🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉
 
+const drawerWidth = '300px';
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+    justifyContent: 'flex-start'
+  },
+  appBar: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: drawerWidth,
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  toolbar: theme.mixins.toolbar,
+  content: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing(3),
+  },
+}));
 
 export default function Inbox(props) {
+  const classes = useStyles();
+
   return (
-    <Sidebar
-      isOpen
-      permanent
-      listItems={list}
-      anchor="left"
-      width="300px"
-    />
+    <div className={classes.root}>
+      <Sidebar
+        permanent
+        listItems={list}
+        anchor="left"
+        width={drawerWidth}
+      />
+      <main className={classes.content}>
+        <h1>ahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</h1>
+      </main>
+    </div>
   )
 }

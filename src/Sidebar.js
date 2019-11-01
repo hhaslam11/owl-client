@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
     zIndex: 2,
     width: props => props.width
   },
-  footer: {
+  header: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-start'
@@ -27,6 +27,7 @@ const useStyles = makeStyles(theme => ({
 /**
  * @param {boolean} props.isOpen is sidebar visible
  * @param {function} props.onClose callback function to run when close request is sent (usually you want it to change state)
+ * @param {boolean} props.permanent is sidebar always visible?
  * @param {array} props.listItems the content of the sidebar (usually a <List>, see below for an example)
  * @param {string} props.color the text color (Icon colors need to be done in parent element)
  * @param {string} props.backgroundColor the background color
@@ -57,15 +58,19 @@ export default function Sidebar(props) {
       classes={{ paper: classes.paper }}
       anchor={props.anchor === 'left' ? 'left' : 'right'}
       open={props.isOpen}
-      variant="persistent"
+      variant={props.permanent ? "permanent" : "persistent"}
     >
       <div className={classes.toolbar} />
-      <div className={classes.footer}>
-        <IconButton onClick={props.onClose}>
-          {props.anchor === 'left' ? <ChevronLeftIcon /> : <ChevronRightIcon/>}
-        </IconButton>
-      </div>
-      <Divider/>
+      {!props.permanent && (
+      <>
+        <div className={classes.header}>
+          <IconButton onClick={props.onClose}>
+            {props.anchor === 'left' ? <ChevronLeftIcon /> : <ChevronRightIcon/>}
+          </IconButton>
+        </div>
+        <Divider/>
+      </>
+      )}
       {props.listItems}
     </Drawer>
   );
