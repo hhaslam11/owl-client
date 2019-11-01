@@ -1,17 +1,12 @@
 import React from "react";
-import { useState } from 'react';
 
 // Material ui
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Badge from '@material-ui/core/Badge';
 
 import Sidebar from '../Sidebar';
 import InboxListItem from '../Inbox/InboxListItem';
+
 import './Inbox.scss';
-// import './InboxListItem.scss';
 
 //This is just driver data, it will eventually be
 //generated based off api data
@@ -55,7 +50,7 @@ const list = (
       country="Austria"
       flag="https://restcountries.eu/data/aut.svg"
     />
-    <ListItem 
+    <InboxListItem 
       username="Shapid"
       country="Chile"
       flag="https://restcountries.eu/data/chl.svg"
