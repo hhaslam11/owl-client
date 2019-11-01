@@ -11,6 +11,7 @@ import Badge from '@material-ui/core/Badge';
 import Sidebar from '../Sidebar';
 
 import './Inbox.scss';
+import './InboxListItem.scss';
 
 //This is just driver data, it will eventually be
 //generated based off api data
@@ -84,7 +85,7 @@ const list = (
       </ListItemAvatar>
       <ListItemText primary="Shapid" secondary="Chile" />
     </ListItem>
-    
+
     <ListItem button>
       <ListItemAvatar>
         <img className="flag" alt="Cook Islands Flag" src="https://restcountries.eu/data/cok.svg" />
@@ -99,8 +100,10 @@ export default function Inbox(props) {
   return (
     <Sidebar
       isOpen
+      permanent
       listItems={list}
       anchor="left"
+      width="300px"
     />
   )
 }
