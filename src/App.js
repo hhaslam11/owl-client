@@ -9,7 +9,7 @@ import Landing from './Landing';
 
 export default function App() {
   const [state, setState] = useState({
-    loggedIn: false,
+    loggedIn: true,
     userId: null
   });
   

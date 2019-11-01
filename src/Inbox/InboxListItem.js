@@ -11,27 +11,31 @@ import './InboxListItem.scss';
 
 /**
  * @param {boolean} props.unread true will display the unread badge
- * @param {boolean} props.unread true will display the unread badge
+ * @param {string} props.username Username of the user who sent the letter
+ * @param {string} props.country Full name of country origin
+ * @param {string} props.flag url of the country flag
  */
 export default function Inbox(props) {
   
-  const listItemContent = (
-    <>
-      <ListItemAvatar>
-        <img className="flag" alt="Burundi Flag" src="https://restcountries.eu/data/bdi.svg" />
-      </ListItemAvatar>
-      <ListItemText primary="CoolOwl" secondary="Burundi" />
-    </>
-  );
+  if (!props.username || !props.country || !props.flag) {
+    console.error('Some of the props seem to be missing.');
+    return null;
+  }
 
   return (
     <ListItem button>
-      {!props.unread && listItemContent}
-      {props.unread && (
+      <ListItemAvatar>
+        <img className="flag" alt={`${props.country} flag`} src={props.flag} />
+      </ListItemAvatar>
+      
+      {props.unread ? (
         <Badge color="secondary" variant="dot">
-          {listItemContent}
+          <ListItemText primary={props.username} secondary={props.country} />
         </Badge>
+      ) : (
+        <ListItemText primary={props.username} secondary={props.country} />
       )}
+    
     </ListItem>
   )
 }
