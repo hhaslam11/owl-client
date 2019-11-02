@@ -5,11 +5,12 @@ import List from '@material-ui/core/List';
 import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
+import SendIcon from '@material-ui/icons/Send';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Sidebar from '../Sidebar';
 import InboxListItem from '../Inbox/InboxListItem';
-import { TextareaAutosize } from "@material-ui/core";
+import { TextareaAutosize, Button } from "@material-ui/core";
 
 import "./Inbox.scss"
 
@@ -71,7 +72,6 @@ const list = (
 //🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉🦉
 
 const drawerWidth = '300px';
-const contentWidth = '55%';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -114,17 +114,32 @@ export default function Inbox(props) {
         />
       </div>
       <main className={classes.content}>
-        <Container style={{ width: contentWidth }}>
+        <Container className="letter-container">
           <Typography variant="h4">hhaslam11</Typography>
           <Typography variant="subtitle2">Canada</Typography>
-          <p>
+          <p className="letter-content">
+            Nulla efficitur odio sed metus pellentesque tristique. Nunc est sem, suscipit vitae erat ac, malesuada euismod metus. Morbi scelerisque elementum arcu sit amet consectetur.
+            Nulla efficitur odio sed metus pellentesque tristique. Nunc est sem, suscipit vitae erat ac, malesuada euismod metus. Morbi scelerisque elementum arcu sit amet consectetur.
+            Nulla efficitur odio sed metus pellentesque tristique. Nunc est sem, suscipit vitae erat ac, malesuada euismod metus. Morbi scelerisque elementum arcu sit amet consectetur.
             Nulla efficitur odio sed metus pellentesque tristique. Nunc est sem, suscipit vitae erat ac, malesuada euismod metus. Morbi scelerisque elementum arcu sit amet consectetur.
           </p>
         </Container>
         <Divider />
-        <Container style={{ width: contentWidth }}>
+
+        <Container className="reply-container" >
           <Typography variant="h4" className="reply-header">Reply</Typography>
-          <TextareaAutosize placeholder="Write your letter..." className="reply" />
+          <TextareaAutosize placeholder="Write your letter..." />
+
+          <div className="button-div">
+            <Button
+              variant="contained"
+              size="small"
+              endIcon={<SendIcon/>}
+            >
+              Send
+            </Button>
+          </div>
+
         </Container>
       </main>
     </div>

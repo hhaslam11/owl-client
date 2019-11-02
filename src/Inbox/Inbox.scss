@@ -1,22 +1,92 @@
 @import "../variables";
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Neucha&display=swap');
 
-.reply {
-  border: 2px solid lightgray;
-  border-radius: 10px;
 
-  // background-color: lighten($bg-color, 20%);
-  // color: $main-text-color;
+//enable borders to make it easy to view the layout
+$debug: true;
 
-  font-size: 20px;
-  font-family: 'Indie Flower', cursive;
-
-  width: 100%;
-  min-height: 300px;
-  resize: vertical;
-}
+$contentWidth: 55%;
 
 .reply-header {
   margin-top: 20px;
   margin-bottom: 20px;
+  
+  padding-top: 15px;
+  padding-bottom: 15px;
+
+  @if $debug {
+    border: 2px solid purple;
+  }
 }
+
+.button-div {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+
+  @if $debug {
+    border: 2px solid pink;
+  }
+}
+
+.letter-content {
+  
+  line-height: 25px;
+  background-color: white;
+  
+  @if $debug {
+    border: 2px solid red;
+  }
+}
+
+.letter-container {
+  
+  width: $contentWidth;
+  background-color: white;
+  
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+
+  @if $debug {
+    border: 2px solid green;
+  }
+}
+
+.reply-container {
+  
+  width: $contentWidth;
+
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  
+  padding-top: 20px;
+  padding-left: 0px;
+  padding-right: 0px;
+
+  
+  
+  @if $debug {
+    border: 2px solid blue;
+  }
+
+  textarea {
+    border: 2px solid lightgray; //TODO get rid of this if i don't end up using it
+    border: none;
+  
+    font-size: 20px;
+    font-family: 'Indie Flower', cursive;
+
+    width: 100%;
+    min-height: 300px;
+    resize: vertical;
+  
+    @if $debug {
+      border: 2px solid orange;
+    }
+  }
+}
+
+
+
