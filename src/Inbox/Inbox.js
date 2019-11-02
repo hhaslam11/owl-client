@@ -16,7 +16,7 @@ import { TextareaAutosize, Button, CircularProgress, Grid } from "@material-ui/c
 import "./Inbox.scss"
 import axios from "axios";
 
-const API_SERVER = '//192.168.88.49:3000';
+const API_SERVER = '//localhost:3000';
 const drawerWidth = '300px';
 
 const useStyles = makeStyles(theme => ({
@@ -48,29 +48,26 @@ const getData = id => {
   return axios.get(`${API_SERVER}/users/${id}/letters`)
     .then(res => {
       const received_letters = res.data.data.received_letters;
-      // const sent_letters     = res.data.data.sent_letters;
 
-      const inboxList = received_letters.map(el => (
-        <InboxListItem 
-          username={el.sender.username}
-          country={el.sender.country.name}
-          flag={el.sender.country.flag_image}
-          unread={!el.read}
-        />
-      ));
-      
-      return (
-        <List>
-          {inboxList}
-        </List>
-      )
+      const data = {};
+      for (const el of received_letters) {
+        data[el.id] = {
+          username: el.sender.username,
+          country: el.sender.country.name,
+          flag: el.sender.country.flag_image,
+          unread: !el.read,
+          content: el.content
+        }
+      }
+
+      return data;
     });
 };
 
 export default function Inbox(props) {
   const classes = useStyles();
 
-  const [state, setState] = useState((
+  const [sidebar, setSidebar] = useState((
     <Grid
       container
       direction="column"
@@ -80,10 +77,29 @@ export default function Inbox(props) {
     >
       <CircularProgress/>
     </Grid>
-  ))
+  ));
+  
+  const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    getData(81).then(a => setState(a));
+    getData(81)
+      .then(data => {
+        const inboxList = [];
+        for(const i in data) {
+          inboxList.push((
+            <InboxListItem 
+              username={data[i].username}
+              country={data[i].country}
+              flag={data[i].flag}
+              unread={!data[i].unread}
+            />
+          ))
+        }
+        
+        setSidebar(inboxList);
+        // setLetter(data[].content);
+      })
+      .catch(() => setSidebar(<p>Can't connect to server</p>));
   }, []);
 
   return (
@@ -93,7 +109,7 @@ export default function Inbox(props) {
       <div style={{width: drawerWidth}}>
         <Sidebar
           permanent
-          listItems={state}
+          listItems={sidebar}
           anchor="left"
           width={drawerWidth}
         />
@@ -103,10 +119,7 @@ export default function Inbox(props) {
           <Typography variant="h4">hhaslam11</Typography>
           <Typography variant="subtitle2">Canada</Typography>
           <p className="letter-content">
-            Nulla efficitur odio sed metus pellentesque tristique. Nunc est sem, suscipit vitae erat ac, malesuada euismod metus. Morbi scelerisque elementum arcu sit amet consectetur.
-            Nulla efficitur odio sed metus pellentesque tristique. Nunc est sem, suscipit vitae erat ac, malesuada euismod metus. Morbi scelerisque elementum arcu sit amet consectetur.
-            Nulla efficitur odio sed metus pellentesque tristique. Nunc est sem, suscipit vitae erat ac, malesuada euismod metus. Morbi scelerisque elementum arcu sit amet consectetur.
-            Nulla efficitur odio sed metus pellentesque tristique. Nunc est sem, suscipit vitae erat ac, malesuada euismod metus. Morbi scelerisque elementum arcu sit amet consectetur.
+            {}
           </p>
         </Container>
         <Divider />
