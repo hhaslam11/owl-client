@@ -14,6 +14,7 @@ import './InboxListItem.scss';
  * @param {string} props.username Username of the user who sent the letter
  * @param {string} props.country Full name of country origin
  * @param {string} props.flag url of the country flag
+ * @param {function} props.onClick callback function for onclick
  */
 export default function Inbox(props) {
   
@@ -24,7 +25,10 @@ export default function Inbox(props) {
 
   return (
     <>
-    <ListItem button>
+    <ListItem
+      button
+      onClick={props.onClick}
+    >
       <ListItemAvatar style={{minWidth: "90px"} /* TODO maybe don't hardcode this */}>
         <img className="flag" alt={`${props.country} flag`} src={props.flag} />
       </ListItemAvatar>

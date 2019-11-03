@@ -1,8 +1,7 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 // Material ui
-import List from '@material-ui/core/List';
 import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
@@ -10,8 +9,9 @@ import SendIcon from '@material-ui/icons/Send';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Sidebar from '../Sidebar';
+import SidebarLoading from './SidebarLoading'
 import InboxListItem from '../Inbox/InboxListItem';
-import { TextareaAutosize, Button, CircularProgress, Grid } from "@material-ui/core";
+import { TextareaAutosize, Button } from "@material-ui/core";
 
 import "./Inbox.scss"
 import axios from "axios";
@@ -67,40 +67,38 @@ const getData = id => {
 export default function Inbox(props) {
   const classes = useStyles();
 
-  const [sidebar, setSidebar] = useState((
-    <Grid
-      container
-      direction="column"
-      justify="center"
-      alignItems="center"
-      style={{height: "100%"}}
-    >
-      <CircularProgress/>
-    </Grid>
-  ));
-  
   const [selected, setSelected] = useState(null);
+  const sidebarData = useRef(null);
 
   useEffect(() => {
-    getData(81)
+    // This is going to get the data from the api server
+    // on first render, and save it in sidebarData
+    getData(90)
       .then(data => {
-        const inboxList = [];
-        for(const i in data) {
-          inboxList.push((
-            <InboxListItem 
-              username={data[i].username}
-              country={data[i].country}
-              flag={data[i].flag}
-              unread={!data[i].unread}
-            />
-          ))
-        }
-        
-        setSidebar(inboxList);
-        // setLetter(data[].content);
+        sidebarData.current = (data);
+        setSelected(688);
       })
-      .catch(() => setSidebar(<p>Can't connect to server</p>));
+      .catch(() => console.log('error connecting to server'));
   }, []);
+
+  let inboxList = <SidebarLoading/>;
+
+  for (const i in sidebarData.current) {
+    if (!Array.isArray(inboxList)) inboxList = [];
+    console.log('this is i:', i);
+    inboxList.push((
+      <InboxListItem
+        username={sidebarData.current[i].username}
+        country={sidebarData.current[i].country}
+        flag={sidebarData.current[i].flag}
+        unread={!sidebarData.current[i].unread}
+        onClick={() => {
+          console.log('click');
+          setSelected(i)
+        }}
+      />
+    ))
+  }
 
   return (
     <div className={classes.root}>
@@ -109,7 +107,7 @@ export default function Inbox(props) {
       <div style={{width: drawerWidth}}>
         <Sidebar
           permanent
-          listItems={sidebar}
+          listItems={inboxList}
           anchor="left"
           width={drawerWidth}
         />
@@ -119,7 +117,7 @@ export default function Inbox(props) {
           <Typography variant="h4">hhaslam11</Typography>
           <Typography variant="subtitle2">Canada</Typography>
           <p className="letter-content">
-            {}
+            {selected && sidebarData.current[selected].content}
           </p>
         </Container>
         <Divider />
