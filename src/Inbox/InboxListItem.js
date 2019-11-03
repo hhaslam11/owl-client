@@ -15,6 +15,7 @@ import './InboxListItem.scss';
  * @param {string} props.country Full name of country origin
  * @param {string} props.flag url of the country flag
  * @param {function} props.onClick callback function for onclick
+ * @param {boolean} props.selected true if its the currently selected letter
  */
 export default function Inbox(props) {
   
@@ -27,6 +28,7 @@ export default function Inbox(props) {
     <>
     <ListItem
       button
+      disabled={props.selected}
       onClick={props.onClick}
     >
       <ListItemAvatar style={{minWidth: "90px"} /* TODO maybe don't hardcode this */}>

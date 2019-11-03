@@ -73,15 +73,37 @@ export default function Inbox(props) {
   const [selected, setSelected] = useState(null);
   const sidebarData = useRef(null);
 
+  /**
+   * Select a letter, marking it as read if not already (on front-end and api)
+   * @param {number} id letter id to select
+   */
+  const select = id => {
+
+    if (sidebarData.current[id].unread) {
+
+      // For now, im just assuming the request works fine.
+      // It would be nice to have error checking- not a priority at the
+      // moment, though. <3
+      axios.put(`${API_SERVER}/users/${userId}/letters/${id}`, { read: true })
+        .catch(e => console.error(e));
+
+      sidebarData.current[id].unread = false;
+    }
+
+    setSelected(id);
+  }
+
   useEffect(() => {
     // This is going to get the data from the api server
     // on first render, and save it in sidebarData
     getData(userId)
       .then(data => {
+
         sidebarData.current = (data);
-        setSelected(688);
+        select(Object.keys(data)[0])
+
       })
-      .catch(() => console.error('error connecting to server'));
+      .catch((e) => console.error(e));
   }, []);
 
   let inboxList = <SidebarLoading/>;
@@ -100,17 +122,8 @@ export default function Inbox(props) {
         country={sidebarData.current[i].country}
         flag={sidebarData.current[i].flag}
         unread={sidebarData.current[i].unread}
-        onClick={() => {
-
-          // For now, im just assuming the request works fine.
-          // It would be nice to have error checking- not a priority at the
-          // moment, though. <3
-          axios.put(`${API_SERVER}/users/${userId}/letters/${i}`, { read: true })
-            .catch(e => console.error(e));
-          sidebarData.current[i].unread = false;
-
-          setSelected(i);
-        }}
+        onClick={() => select(i)}
+        selected={selected === i}
       />
     ))
   }
