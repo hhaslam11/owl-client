@@ -17,11 +17,14 @@ import InboxListItem from '../Inbox/InboxListItem';
 
 // Sass
 import "./Inbox.scss"
+import SidebarEmpty from './SidebarEmpty';
 
 const API_SERVER = '//localhost:3000';
 const drawerWidth = '300px';
 
 // TODO Just for testing purposes. Should be taken from cookies
+// 90 is a good example
+// 300 is a blank example
 const userId = 90;
 
 const useStyles = makeStyles(theme => ({
@@ -64,6 +67,14 @@ export default function Inbox(props) {
    */
   const select = id => {
 
+    // if id is falsy, that means theres no recieved/sent letters.
+    // Im setting selected to 0 because i need it to be fasly
+    // while being able to differentiate it from null
+    if (!id) {
+      setSelected(0);
+      return;
+    } 
+
     if (sidebarData.current[id].unread) {
 
       // For now, im just assuming the request works fine.
@@ -86,13 +97,14 @@ export default function Inbox(props) {
       .then(data => {
 
         sidebarData.current = (data);
-        select(Object.keys(data)[0])
+        select(Object.keys(data)[0]);
 
       })
       .catch((e) => console.error(e));
   }, []);
 
   let inboxList = <SidebarLoading/>;
+  if (selected === 0) inboxList = <SidebarEmpty/>
 
   /*
    * Re-creates the sidebar data every render
@@ -128,23 +140,27 @@ export default function Inbox(props) {
       </div>
       <main className={classes.content}>
         <Container className="letter-container">
-          <Typography variant="h4">{selected && sidebarData.current[selected].username}</Typography>
-          <Typography variant="subtitle2">{selected && sidebarData.current[selected].country}</Typography>
+          <Typography variant="h4">{selected ? sidebarData.current[selected].username : null}</Typography>
+          <Typography variant="subtitle2">{selected ? sidebarData.current[selected].country : null}</Typography>
           <p className="letter-content">
-            {selected && sidebarData.current[selected].content}
+            {selected ? sidebarData.current[selected].content : null}
           </p>
         </Container>
         <Divider />
 
         <Container className="reply-container" >
           <Typography variant="h4" className="reply-header">Reply</Typography>
-          <TextareaAutosize placeholder="Write your letter..." />
+          <TextareaAutosize
+            placeholder="Write your letter..."
+            disabled={!selected}
+          />
 
           <div className="button-div">
             <Button
               variant="contained"
               size="small"
               endIcon={<SendIcon/>}
+              disabled={!selected}
             >
               Send
             </Button>
