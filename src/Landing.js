@@ -9,7 +9,6 @@ import { Button } from '@material-ui/core';
 import "./Landing.scss";
 
 const GENERIC_ERROR = "Something went wrong. Please try again";
-// const API_SERVER    = "http://192.168.88.214:3000";
 const API_SERVER    = "http://localhost:3000";
 
 export default function Landing(props) {

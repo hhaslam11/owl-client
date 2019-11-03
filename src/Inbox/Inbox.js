@@ -19,6 +19,9 @@ import axios from "axios";
 const API_SERVER = '//localhost:3000';
 const drawerWidth = '300px';
 
+//Just for testing purposes. Should be taken from cookies
+const userId = 90;
+
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
@@ -73,28 +76,40 @@ export default function Inbox(props) {
   useEffect(() => {
     // This is going to get the data from the api server
     // on first render, and save it in sidebarData
-    getData(90)
+    getData(userId)
       .then(data => {
         sidebarData.current = (data);
         setSelected(688);
       })
-      .catch(() => console.log('error connecting to server'));
+      .catch(() => console.error('error connecting to server'));
   }, []);
 
   let inboxList = <SidebarLoading/>;
 
+  /*
+   * Re-creates the sidebar data every render
+   * This isnt the best way of doing thing, but
+   * it works for now. useRef would probably be 
+   * better here
+   */
   for (const i in sidebarData.current) {
     if (!Array.isArray(inboxList)) inboxList = [];
-    console.log('this is i:', i);
     inboxList.push((
       <InboxListItem
         username={sidebarData.current[i].username}
         country={sidebarData.current[i].country}
         flag={sidebarData.current[i].flag}
-        unread={!sidebarData.current[i].unread}
+        unread={sidebarData.current[i].unread}
         onClick={() => {
-          console.log('click');
-          setSelected(i)
+
+          // For now, im just assuming the request works fine.
+          // It would be nice to have error checking- not a priority at the
+          // moment, though. <3
+          axios.put(`${API_SERVER}/users/${userId}/letters/${i}`, { read: true })
+            .catch(e => console.error(e));
+          sidebarData.current[i].unread = false;
+
+          setSelected(i);
         }}
       />
     ))
@@ -114,8 +129,8 @@ export default function Inbox(props) {
       </div>
       <main className={classes.content}>
         <Container className="letter-container">
-          <Typography variant="h4">hhaslam11</Typography>
-          <Typography variant="subtitle2">Canada</Typography>
+          <Typography variant="h4">{selected && sidebarData.current[selected].username}</Typography>
+          <Typography variant="subtitle2">{selected && sidebarData.current[selected].country}</Typography>
           <p className="letter-content">
             {selected && sidebarData.current[selected].content}
           </p>
