@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect, useRef } from 'react';
+import axios from "axios";
 
 // Material ui
 import Container from '@material-ui/core/Container';
@@ -7,39 +8,23 @@ import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import SendIcon from '@material-ui/icons/Send';
 import { makeStyles } from '@material-ui/core/styles';
+import { TextareaAutosize, Button } from "@material-ui/core";
 
+// Internal components
 import Sidebar from '../Sidebar';
 import SidebarLoading from './SidebarLoading'
 import InboxListItem from '../Inbox/InboxListItem';
-import { TextareaAutosize, Button } from "@material-ui/core";
 
+// Sass
 import "./Inbox.scss"
-import axios from "axios";
 
 const API_SERVER = '//localhost:3000';
 const drawerWidth = '300px';
 
-//Just for testing purposes. Should be taken from cookies
+// TODO Just for testing purposes. Should be taken from cookies
 const userId = 90;
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    justifyContent: 'flex-start',
-    minHeight: "100vh"
-  },
-  appBar: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  toolbar: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
@@ -94,6 +79,7 @@ export default function Inbox(props) {
   }
 
   useEffect(() => {
+    
     // This is going to get the data from the api server
     // on first render, and save it in sidebarData
     getData(userId)
@@ -129,7 +115,7 @@ export default function Inbox(props) {
   }
 
   return (
-    <div className={classes.root}>
+    <div className="inbox">
 
       {/* This is to make the sidebar actually take up space (otherwise content will hide behind it) */}
       <div style={{width: drawerWidth}}>

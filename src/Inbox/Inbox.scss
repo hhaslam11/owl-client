@@ -7,6 +7,16 @@ $debug: false;
 
 $contentWidth: 55%;
 
+.inbox {
+  display: flex;
+  justify-content: flex-start;
+  min-height: 100vh;
+
+  @if $debug {
+    border: 2px solid palegreen;
+  }
+}
+
 .reply-header {
   margin-top: 20px;
   margin-bottom: 20px;
