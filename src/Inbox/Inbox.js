@@ -60,7 +60,7 @@ const getData = id => {
     });
 };
 
-export default function Inbox(props) {
+export default function Inbox() {
   const classes = useStyles();
   const history = useHistory();
   const [selected, setSelected] = useState(null);
@@ -115,6 +115,7 @@ export default function Inbox(props) {
 
       })
       .catch((e) => console.error(e));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   let inboxList = <SidebarLoading/>;

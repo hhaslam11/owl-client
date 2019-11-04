@@ -7,12 +7,12 @@ import './App.scss';
 import Dashboard from './Dashboard';
 import Landing from './Landing';
 
-
 export default function App() {
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
   const [state, setState] = useState({
     loggedIn: cookies.id ? true : false
   });
+
 
   const login = (userId) => {
     if (!userId) {
