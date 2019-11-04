@@ -23,9 +23,9 @@ const API_SERVER = '//localhost:3000';
 const drawerWidth = '300px';
 
 // TODO Just for testing purposes. Should be taken from cookies
-// 90 is a good example
+// 93 is a good example
 // 300 is a blank example
-const userId = 90;
+const userId = 93;
 
 const useStyles = makeStyles(theme => ({
   content: {

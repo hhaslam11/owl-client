@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Typography, Grid, ListItem, ListItemText } from "@material-ui/core";
+import { ListItem, ListItemText } from "@material-ui/core";
 
 export default function SidebarEmpty() {
   return (
