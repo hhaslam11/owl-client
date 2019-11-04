@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect, useRef } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from "axios";
 
 // Material ui
@@ -7,13 +8,16 @@ import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import SendIcon from '@material-ui/icons/Send';
+import MenuList from '@material-ui/core/MenuList';
+import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles } from '@material-ui/core/styles';
 import { TextareaAutosize, Button } from "@material-ui/core";
 
 // Internal components
 import Sidebar from '../Sidebar';
-import SidebarLoading from './SidebarLoading'
+import SidebarLoading from './SidebarLoading';
 import InboxListItem from '../Inbox/InboxListItem';
+import Navigation from '../Navigation';
 
 // Sass
 import "./Inbox.scss"
@@ -57,10 +61,18 @@ const getData = id => {
 
 export default function Inbox(props) {
   const classes = useStyles();
-
+  const history = useHistory();
   const [selected, setSelected] = useState(null);
   const sidebarData = useRef(null);
 
+  const navMenu = (
+    <MenuList>
+      <MenuItem onClick={() => history.push('/')}>Map</MenuItem>
+      <MenuItem>Post Office</MenuItem>
+      <MenuItem>Logout</MenuItem>
+    </MenuList>
+  )
+  
   /**
    * Select a letter, marking it as read if not already (on front-end and api)
    * @param {number} id letter id to select
@@ -127,6 +139,12 @@ export default function Inbox(props) {
   }
 
   return (
+    <>
+    <Navigation
+        title="Owl"
+        menuList={navMenu}
+        backgroundColor="#012b54"
+    />
     <div className="inbox">
 
       {/* This is to make the sidebar actually take up space (otherwise content will hide behind it) */}
@@ -169,5 +187,6 @@ export default function Inbox(props) {
         </Container>
       </main>
     </div>
+    </>
   )
 }

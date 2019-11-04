@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 // import './Dashboard.scss';
 
@@ -23,6 +24,8 @@ import Map from './Map';
  * @param {function} props.logout the function to call when user clicks logout
  */
 export default function Dashboard(props) {
+  
+  let history = useHistory();
 
   const [state, setState] = useState({
     open: false,
@@ -32,7 +35,7 @@ export default function Dashboard(props) {
 
   const navMenu = (
     <MenuList>
-      <MenuItem>Inbox</MenuItem>
+      <MenuItem onClick={() => history.push('/inbox')}>Inbox</MenuItem>
       <MenuItem>Post Office</MenuItem>
       <MenuItem onClick={props.logout}>Logout</MenuItem>
     </MenuList>
