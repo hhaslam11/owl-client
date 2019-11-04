@@ -47,8 +47,9 @@ export default function Landing(props) {
       password: login.password
     })
     .then(r => {
+
       if (r.data.status !== 'ERROR') {
-        props.login()
+        props.login(r.data.data.id);
         setLogin({ ...login, email: null, password: null, open: false });
       } else {
         setLogin({ ...login, generalError: 'Email or password incorrect' });
@@ -101,7 +102,7 @@ export default function Landing(props) {
 
         setRegister({ ...register, error });
       } else {
-        props.login();
+        props.login(r.data.data.id);
       }
     })
     .catch(e => {
