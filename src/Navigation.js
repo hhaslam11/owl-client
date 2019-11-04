@@ -64,7 +64,7 @@ export default function Map(props) {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar className={classes.navbar}>
           <Typography variant="h6" className={classes.title}>
             {props.title || 'Home'}

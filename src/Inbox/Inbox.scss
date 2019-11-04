@@ -11,6 +11,8 @@ $contentWidth: 55%;
   display: flex;
   justify-content: flex-start;
   min-height: 100vh;
+  background-color: $bg-color;
+  
 
   @if $debug {
     border: 2px solid palegreen;
@@ -42,8 +44,9 @@ $contentWidth: 55%;
 .letter-content {
   
   line-height: 25px;
-  background-color: white;
-  
+  background-color: lighten($bg-color, 5%);
+  color: $main-text-color;
+
   @if $debug {
     border: 2px solid red;
   }
@@ -52,8 +55,9 @@ $contentWidth: 55%;
 .letter-container {
   
   width: $contentWidth;
-  background-color: white;
-  
+  background-color: lighten($bg-color, 5%);
+  color: $main-text-color;
+
   padding-top: 20px;
   padding-bottom: 20px;
   margin-bottom: 20px;
@@ -64,7 +68,8 @@ $contentWidth: 55%;
 }
 
 .reply-container {
-  
+  background-color: $bg-color;
+  color: $main-text-color;
   width: $contentWidth;
 
   padding-bottom: 20px;
@@ -84,6 +89,9 @@ $contentWidth: 55%;
     border: 2px solid lightgray; //TODO get rid of this if i don't end up using it
     border: none;
   
+    background-color: lighten($bg-color, 5%);
+    color: $main-text-color;
+
     font-size: 20px;
     font-family: 'Indie Flower', cursive;
 

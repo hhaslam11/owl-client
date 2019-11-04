@@ -34,9 +34,8 @@ const userId = 93;
 const useStyles = makeStyles(theme => ({
   content: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
     padding: theme.spacing(3),
-  },
+  }
 }));
 
 const getData = id => {
@@ -151,6 +150,7 @@ export default function Inbox(props) {
       <div style={{width: drawerWidth}}>
         <Sidebar
           permanent
+          displayUnderNavigation
           listItems={inboxList}
           anchor="left"
           width={drawerWidth}
