@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 import axios from "axios";
 
 // Material ui
@@ -26,10 +27,10 @@ import SidebarEmpty from './SidebarEmpty';
 const API_SERVER = '//localhost:3000';
 const drawerWidth = '300px';
 
-// TODO Just for testing purposes. Should be taken from cookies
+// Override logged in userid. Only use this for development purposes, otherwise set to null
 // 93 is a good example
 // 300 is a blank example
-const userId = 93;
+const devUserId = 93;
 
 const useStyles = makeStyles(theme => ({
   content: {
@@ -64,6 +65,7 @@ export default function Inbox(props) {
   const history = useHistory();
   const [selected, setSelected] = useState(null);
   const sidebarData = useRef(null);
+  const [cookies] = useCookies(['user']);
 
   const navMenu = (
     <MenuList>
@@ -92,7 +94,7 @@ export default function Inbox(props) {
       // For now, im just assuming the request works fine.
       // It would be nice to have error checking- not a priority at the
       // moment, though. <3
-      axios.put(`${API_SERVER}/users/${userId}/letters/${id}`, { read: true })
+      axios.put(`${API_SERVER}/users/${devUserId || cookies.id}/letters/${id}`, { read: true })
         .catch(e => console.error(e));
 
       sidebarData.current[id].unread = false;
@@ -105,7 +107,7 @@ export default function Inbox(props) {
     
     // This is going to get the data from the api server
     // on first render, and save it in sidebarData
-    getData(userId)
+    getData(devUserId || cookies.id)
       .then(data => {
 
         sidebarData.current = (data);
