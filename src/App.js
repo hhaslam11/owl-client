@@ -22,10 +22,12 @@ export default function App() {
 
     setCookie('id', userId);
     setState({ ...state, loggedIn: true });
+
   };
 
   const logout = () => {
     removeCookie('id');
+    removeCookie('country');
     setState({ ...state, loggedIn: false });
   };
   

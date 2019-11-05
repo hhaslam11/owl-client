@@ -1,6 +1,7 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 // import './Dashboard.scss';
 
@@ -18,6 +19,7 @@ import PublicIcon from '@material-ui/icons/Public';
 import Navigation from './Navigation';
 import Sidebar from './Sidebar';
 import Map from './Map';
+import useLocation from './hooks/useLocation';
 
 /**
  * 
@@ -25,7 +27,14 @@ import Map from './Map';
  */
 export default function Dashboard(props) {
   
-  let history = useHistory();
+  const history = useHistory();
+  const setCookie = useCookies(['user'])[1];
+  const getLocation = useLocation;
+
+  useEffect(() => {
+    getLocation(iso2 => setCookie('country', iso2));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const [state, setState] = useState({
     open: false,
