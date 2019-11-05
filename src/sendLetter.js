@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 
-const API_SERVER = '//localhost:3000';
+const API_SERVER = process.env.REACT_APP_API_SERVER;
 
 export default (toCountry, content) => {
   const [cookies] = useCookies(['user']);

@@ -3,6 +3,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Setup Environment Variables
+
+Copy `.env.local.example` to `.env.local`, and change it to use the address youre running the api server on
+
 ## Available Scripts
 
 In the project directory, you can run:

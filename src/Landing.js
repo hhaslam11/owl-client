@@ -9,7 +9,7 @@ import { Button } from '@material-ui/core';
 import "./Landing.scss";
 
 const GENERIC_ERROR = "Something went wrong. Please try again";
-const API_SERVER    = "http://localhost:3000";
+const API_SERVER    = process.env.REACT_APP_API_SERVER;
 
 export default function Landing(props) {
   const [login, setLogin] = useState({

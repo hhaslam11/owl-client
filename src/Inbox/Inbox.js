@@ -24,7 +24,7 @@ import Navigation from '../Navigation';
 import "./Inbox.scss"
 import SidebarEmpty from './SidebarEmpty';
 
-const API_SERVER = '//localhost:3000';
+const API_SERVER = process.env.REACT_APP_API_SERVER;
 const drawerWidth = '300px';
 
 // Override logged in userid. Only use this for development purposes, otherwise set to null
