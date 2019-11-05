@@ -2,12 +2,18 @@ const countryIso = require('country-iso');
 const { convertIso3Code } = require("convert-country-codes");
 const axios = require('axios');
 
+const API_SERVER = process.env.REACT_APP_API_SERVER;
+
 //fallback function if geolocation doesnt work
 const ipFallback = cb => {
-  //todo
+  axios.get(`${API_SERVER}/country`)
+    .then(r => cb(r.data.data));
 };
 
-
+/**
+ * Get's ISO 2 code for country that user is in
+ * @param {function} cb callback function that is passed an iso2 code when recieved
+ */
 export default function useLocation(cb) {
   //attempt to obtain geolocation from client
   if (navigator.geolocation) {
@@ -25,6 +31,3 @@ export default function useLocation(cb) {
   }
 
 }
-
-
-useLocation();
