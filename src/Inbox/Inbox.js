@@ -15,8 +15,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import { TextareaAutosize, Button } from "@material-ui/core";
 
 // Internal components
-import Sidebar from '../Sidebar';
 import SidebarLoading from './SidebarLoading';
+import Sent from './Sent';
+import Sidebar from '../Sidebar';
 import InboxListItem from '../Inbox/InboxListItem';
 import Navigation from '../Navigation';
 
@@ -135,6 +136,7 @@ export default function Inbox() {
 
     sendLetter(cookies.id, cookies.country, toCountry, textArea, letterId);
     setSent(true);
+    setTextArea('');
   };
 
   for (const i in sidebarData.current) {
@@ -151,12 +153,16 @@ export default function Inbox() {
     ))
   }
 
-  if (sent) return (
-    <h1>sent!</h1>
-  )
-
   return (
     <>
+    <Sent
+      open={sent}
+      country={selected && sidebarData.current[selected].country}
+      onClose={() => {
+        setSelected(null);
+        history.push('/');
+      }}
+    />
     <Navigation
         title="Owl"
         menuList={navMenu}
