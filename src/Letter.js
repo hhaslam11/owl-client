@@ -49,22 +49,3 @@ export default function Letter(props) {
     </>
   )
 }
-
-/*
-    <>
-      <Grow in={state}>
-          <textarea id="letter" maxlength={props.maxlength || "700"}></textarea>
-      </Grow>
-
-      <Button
-        id="letter-btn"
-        variant="contained"
-        color="primary"
-        endIcon={<Icon/>}
-        onClick={shrink}
-      >
-        Send
-      </Button>
-      <button onClick={() => setState(true)}>Open</button>
-    </>
-*/
