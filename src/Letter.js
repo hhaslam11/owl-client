@@ -1,23 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 //material ui
-import Grow from '@material-ui/core/Grow';
 import { Button, Modal } from '@material-ui/core';
-import Icon from '@material-ui/icons/Send';
 
 import './Letter.scss';
+import { cb } from 'react-syntax-highlighter/dist/styles/prism';
 
 export default function Letter(props) {
+  const [state, setState] = useState(props);
+  const [letter, setLetter] = useState('');
 
   return (
-    <Modal open>
+    <Modal open={state}>
       <>
       <div className="letter-container">
         <div className="letter-container-inner">
-          <textarea id="letter" maxlength={props.maxlength || "700"}></textarea>
+          <textarea
+            id="letter"
+            maxlength={props.maxlength || "700"}
+            value={letter}
+            onChange={(e) => setLetter(e.target.value)}
+          />
 
           <div className="letter-btn-container">
-            <Button className="button" variant="contained">Send</Button>
+            <Button
+              className="button"
+              variant="contained"
+              onClick={() => {
+                setState(false);
+                cb(letter);
+              }}
+            >
+              Send
+            </Button>
           </div>
         </div>
       </div>
