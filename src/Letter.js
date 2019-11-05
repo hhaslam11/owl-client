@@ -13,8 +13,8 @@ export default function Letter(props) {
   const [state, setState] = useState(false);
 
   const shrink = () => {
-    // setState(false);
     document.getElementById('letter').className = "shrink";
+    document.getElementById('letter-btn').className = "invisible";
     props.onSend && props.onSend();
   }
 
@@ -25,6 +25,7 @@ export default function Letter(props) {
       </Grow>
 
       <Button
+        id="letter-btn"
         variant="contained"
         color="primary"
         endIcon={<Icon/>}

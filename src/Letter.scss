@@ -17,6 +17,10 @@ textarea#letter {
   border-radius: 8px;
 }
 
+.invisible {
+  display: none;
+}
+
 .shrink {
   animation-name: shrink-animation;
   animation-duration: 1s;
