@@ -15,7 +15,10 @@ const API_SERVER    = process.env.REACT_APP_API_SERVER;
 const useStyles = makeStyles(({
   landingBtn: {
     margin: "5px",
-    backgroundColor: "#84CA50",
+    backgroundColor: "#69BC2C",
+    '&:hover': {
+      backgroundColor: "#458119",
+    },
     fontFamily: "'Fredoka One', cursive",
   }
 }));
