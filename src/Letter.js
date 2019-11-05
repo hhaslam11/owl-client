@@ -2,44 +2,20 @@ import React, { useState } from 'react';
 
 //material ui
 import { Button, Modal } from '@material-ui/core';
-import Snackbar from '@material-ui/core/Snackbar';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
 
+import Sent from './Inbox/Sent';
 import './Letter.scss';
 
 export default function Letter(props) {
   const [state, setState] = useState(props);
-  
-  //Open and close snackbar
-  const [snack, setSnack] = useState(false);
+  const [sent, setSent] = useState(false);
   const [letter, setLetter] = useState('');
 
   return (
     <>
-    <Snackbar
-      anchorOrigin={{
-        vertical: 'bottom',
-        horizontal: 'left',
-      }}
-      open={snack}
-      autoHideDuration={6000}
-      onClose={() => setSnack(false)}
-      ContentProps={{
-        'aria-describedby': 'message-id',
-      }}
-      message={<span id="message-id">Your letter is on it's way!</span>}
-      action={[
-        <IconButton
-          key="close"
-          aria-label="close"
-          color="inherit"
-          // className={classes.close}
-          onClick={() => setSnack(false)}
-        >
-          <CloseIcon />
-        </IconButton>,
-      ]}
+    <Sent
+      open={sent}
+      onClose={() => {setSent(false)}}
     />
     <Modal open={state}>
       <>
@@ -57,7 +33,7 @@ export default function Letter(props) {
               className="button"
               variant="contained"
               onClick={() => {
-                setSnack(true);
+                setSent(true);
                 setState(false);
                 props.cb(letter);
               }}
