@@ -46,9 +46,11 @@ const getData = id => {
     .then(res => {
       const received_letters = res.data.data.received_letters;
 
+      console.log(received_letters);
       const data = {};
       for (const el of received_letters) {
         data[el.id] = {
+          letterId: el.id,
           username: el.sender.username,
           country: el.sender.country.name,
           countryId: el.sender.country.abbreviation,
@@ -127,19 +129,14 @@ export default function Inbox() {
   let inboxList = <SidebarLoading/>;
   if (selected === 0) inboxList = <SidebarEmpty/>
 
-
   const send = () => {
     const toCountry = sidebarData.current[selected].countryId;
-    sendLetter(cookies.id, cookies.country, toCountry, textArea);
+    const letterId  = sidebarData.current[selected].letterId;
+
+    sendLetter(cookies.id, cookies.country, toCountry, textArea, letterId);
     setSent(true);
   };
 
-  /*
-   * Re-creates the sidebar data every render
-   * This isnt the best way of doing thing, but
-   * it works for now. useRef would probably be 
-   * better here
-   */
   for (const i in sidebarData.current) {
     if (!Array.isArray(inboxList)) inboxList = [];
     inboxList.push((
