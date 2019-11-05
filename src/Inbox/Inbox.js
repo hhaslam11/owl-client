@@ -23,6 +23,7 @@ import Navigation from '../Navigation';
 // Sass
 import "./Inbox.scss"
 import SidebarEmpty from './SidebarEmpty';
+import sendLetter from '../helpers/sendLetter';
 
 const API_SERVER = process.env.REACT_APP_API_SERVER;
 const drawerWidth = '300px';
@@ -50,6 +51,7 @@ const getData = id => {
         data[el.id] = {
           username: el.sender.username,
           country: el.sender.country.name,
+          countryId: el.sender.country.abbreviation,
           flag: el.sender.country.flag_image,
           unread: !el.read,
           content: el.content
@@ -63,7 +65,12 @@ const getData = id => {
 export default function Inbox() {
   const classes = useStyles();
   const history = useHistory();
+  
+  //state
   const [selected, setSelected] = useState(null);
+  const [textArea, setTextArea] = useState('');
+  const [sent, setSent] = useState(false);
+
   const sidebarData = useRef(null);
   const [cookies] = useCookies(['user']);
 
@@ -102,7 +109,6 @@ export default function Inbox() {
 
     setSelected(id);
   }
-
   useEffect(() => {
     
     // This is going to get the data from the api server
@@ -120,6 +126,13 @@ export default function Inbox() {
 
   let inboxList = <SidebarLoading/>;
   if (selected === 0) inboxList = <SidebarEmpty/>
+
+
+  const send = () => {
+    const toCountry = sidebarData.current[selected].countryId;
+    sendLetter(cookies.id, cookies.country, toCountry, textArea);
+    setSent(true);
+  };
 
   /*
    * Re-creates the sidebar data every render
@@ -140,6 +153,10 @@ export default function Inbox() {
       />
     ))
   }
+
+  if (sent) return (
+    <h1>sent!</h1>
+  )
 
   return (
     <>
@@ -175,6 +192,8 @@ export default function Inbox() {
           <TextareaAutosize
             placeholder="Write your letter..."
             disabled={!selected}
+            value={textArea}
+            onChange={e => setTextArea(e.target.value)}
           />
 
           <div className="button-div">
@@ -183,6 +202,7 @@ export default function Inbox() {
               size="small"
               endIcon={<SendIcon/>}
               disabled={!selected}
+              onClick={send}
             >
               Send
             </Button>
