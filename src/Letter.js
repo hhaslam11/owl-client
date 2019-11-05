@@ -1,24 +1,33 @@
 import React from 'react';
-import { useState } from 'react';
 
 //material ui
 import Grow from '@material-ui/core/Grow';
-import { Button } from '@material-ui/core';
+import { Button, Modal } from '@material-ui/core';
 import Icon from '@material-ui/icons/Send';
 
 import './Letter.scss';
 
 export default function Letter(props) {
-  
-  const [state, setState] = useState(false);
-
-  const shrink = () => {
-    document.getElementById('letter').className = "shrink";
-    document.getElementById('letter-btn').className = "invisible";
-    props.onSend && props.onSend();
-  }
 
   return (
+    <Modal open>
+      <>
+      <div className="letter-container">
+        <div className="letter-container-inner">
+          <textarea id="letter" maxlength={props.maxlength || "700"}></textarea>
+
+          <div className="letter-btn-container">
+            <Button className="button" variant="contained">Send</Button>
+          </div>
+        </div>
+      </div>
+      
+      </>
+    </Modal>
+  )
+}
+
+/*
     <>
       <Grow in={state}>
           <textarea id="letter" maxlength={props.maxlength || "700"}></textarea>
@@ -35,5 +44,4 @@ export default function Letter(props) {
       </Button>
       <button onClick={() => setState(true)}>Open</button>
     </>
-  )
-}
+*/
