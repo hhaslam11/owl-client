@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 //material ui
 import { Button, Modal } from '@material-ui/core';
 
+
 import './Letter.scss';
-import { cb } from 'react-syntax-highlighter/dist/styles/prism';
 
 export default function Letter(props) {
   const [state, setState] = useState(props);
@@ -28,7 +28,7 @@ export default function Letter(props) {
               variant="contained"
               onClick={() => {
                 setState(false);
-                cb(letter);
+                props.cb(letter);
               }}
             >
               Send
