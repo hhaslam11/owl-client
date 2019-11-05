@@ -1,6 +1,41 @@
 @import "./variables";
 
-.landing-btn {
-  background-color: red;
-  border: none;
+container.landing-page {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+  justify-content:center;
+  background-image: radial-gradient(circle, $bg-color-3, $bg-color-2)
+}
+
+image.landing {
+  box-shadow: 0px 0px 5px $dark-color-1;
+}
+
+div.buttons {
+  display: flex;
+  justify-content: space-evenly;
+  z-index: 3
+}
+
+div.top-logo {
+  position: fixed;
+  display: flex;
+  justify-content:center;
+  align-content: center;
+  height: 100vh;
+  width: 100%;
+  z-index: 3;
+}
+
+span.landing-span {
+  position: fixed;
+  font-family: $font-family-2;
+  font-size: 80px;
+  text-shadow: 0px 0px 5px $dark-color-1;
+  z-index: 3;
+  top: 55%;
 }
