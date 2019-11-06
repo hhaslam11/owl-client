@@ -76,10 +76,10 @@ export default function Map(props) {
       <AppBar position="fixed">
         <Toolbar className={classes.navbar}>
           <div className={classes.navRight}>
+            <img class="nav" height="50px" alt="owl logo" src="/images/owl.png"/>
             <Typography variant="h6" className={classes.title}>
               {props.title || 'Home'}
             </Typography>
-            <img class="nav" height="50px" alt="owl logo" src="/images/owl.png"/>
           </div>
 
           <IconButton ref={anchorRef} onClick={handleMenuClick} edge="start" className={classes.menuButton}>
