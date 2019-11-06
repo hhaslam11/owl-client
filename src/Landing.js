@@ -5,13 +5,26 @@ import axios from 'axios';
 import Login from './Login'
 import Register from './Register'
 import { Button } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 
 import "./Landing.scss";
 
 const GENERIC_ERROR = "Something went wrong. Please try again";
 const API_SERVER    = process.env.REACT_APP_API_SERVER;
 
+const useStyles = makeStyles(({
+  landingBtn: {
+    margin: "5px",
+    backgroundColor: "#69BC2C",
+    '&:hover': {
+      backgroundColor: "#458119",
+    },
+    fontFamily: "'Fredoka One', cursive",
+  }
+}));
+
 export default function Landing(props) {
+  const classes = useStyles();
   const [login, setLogin] = useState({
     email: '',
     password: '',
@@ -113,26 +126,32 @@ export default function Landing(props) {
 
   return (
     <>
-      <img height="500px" alt="owl logo" src="/images/owltakingovertheworld.png"/>
-      <br/>
-      <Button variant="contained" size="large" color="primary" onClick={() => {setLogin({ ...login, open: true })}}>Login</Button>
-      <Button variant="contained" size="large" color="primary" onClick={() => {setRegister({ ...login, open: true })}}>Register</Button>
-      <Login
-        open={login.open}
-        generalError={login.generalError}
+      <container class="landing-page">
+        <div class="top-logo">
+          <span class="landing-span">Owl Mail</span>
+        </div>
+        <img class="landing" height="500px" alt="owl logo" src="/images/owltakingovertheworld.png"/>
+        <br/>
+        <div class="buttons">
+          <Button className={classes.landingBtn} variant="contained" size="large" color="primary" onClick={() => {setLogin({ ...login, open: true })}}>Login</Button>
+          <Button className={classes.landingBtn} variant="contained" size="large" color="primary" onClick={() => {setRegister({ ...login, open: true })}}>Register</Button>
+        </div>
+        <Login
+          open={login.open}
+          generalError={login.generalError}
 
-        emailValue={login.email}
-        emailOnChange={(value) => setLogin({...login, email: value, emailError: null})}
-        emailError={login.emailError}
+          emailValue={login.email}
+          emailOnChange={(value) => setLogin({...login, email: value, emailError: null})}
+          emailError={login.emailError}
 
-        passwordValue={login.password}
-        passwordOnChange={(value) => setLogin({...login, password: value, passwordError: null})}
-        passwordError={login.passwordError}
+          passwordValue={login.password}
+          passwordOnChange={(value) => setLogin({...login, password: value, passwordError: null})}
+          passwordError={login.passwordError}
 
-        onCancel={() => setLogin({...login, open: false})}
-        onSubmit={() => validate(login.email, login.password)}
-      />
-      <Register 
+          onCancel={() => setLogin({...login, open: false})}
+          onSubmit={() => validate(login.email, login.password)}
+        />
+        <Register
           title="Create an account 🦉"
           open={register.open}
 
@@ -147,10 +166,13 @@ export default function Landing(props) {
           passwordConfirmOnChange={(value) => setRegister({ ...register, passwordConfirm: value, error: '' })}
 
           onSubmit={validateRegister}
-          onCancel={() => {setRegister({ ...register, passwordConfirm: '', open: false })}}
+          onCancel={() => {
+            setRegister({ ...register, passwordConfirm: '', open: false })
+          }}
 
           error={register.error}
         />
+      </container>
     </>
-  )
+  );
 }
