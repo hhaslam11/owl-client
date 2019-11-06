@@ -52,11 +52,7 @@ const onLetterSelect = (cb) => {
     });
 };
 
-/**
- * 
- * @param {type} props.value description of prop
- */
-export default function PostOffice(props) {
+export default function PostOffice() {
 
   // Hooks 🦉
   
