@@ -50,7 +50,6 @@ const getData = id => {
       const data = {};
 
       for (const user of users) {
-        console.log(user)
         data[user.letters[user.letters.length - 1].letter_id] = {
           letterId: user.letters[user.letters.length - 1].letter_id,
           username: user.username,
@@ -99,7 +98,7 @@ export default function Inbox() {
     if (!id) {
       setSelected(0);
       return;
-    } 
+    }
 
     if (sidebarData.current[id].unread) {
       // For now, im just assuming the request works fine.
@@ -191,7 +190,7 @@ export default function Inbox() {
       }}
     />
     <Navigation
-        title="Owl"
+        title="Owl Mail"
         menuList={navMenu}
         backgroundColor="#012b54"
     />

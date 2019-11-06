@@ -81,7 +81,7 @@ export default function Dashboard(props) {
   return (
     <>
       <Navigation
-        title="Owl"
+        title="Owl Mail"
         menuList={navMenu}
         backgroundColor="#012b54"
       />
