@@ -32,7 +32,7 @@ const drawerWidth = '300px';
 // Override logged in userid. Only use this for development purposes, otherwise set to null
 // 93 is a good example
 // 300 is a blank example
-const devUserId = 93;
+const devUserId = null;
 
 const useStyles = makeStyles(theme => ({
   content: {

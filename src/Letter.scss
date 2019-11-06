@@ -30,7 +30,9 @@ textarea#letter {
   animation-fill-mode: forwards;
 }
 
-.letter-container {
+.new-letter-container {
+  margin-top: 7%;
+
   display: flex;
   justify-content: center;
 
@@ -39,7 +41,7 @@ textarea#letter {
   }
 }
 
-.letter-container-inner {
+.new-letter-container-inner {
 
   @if $debug {
     border: 2px solid yellow;
