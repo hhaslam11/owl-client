@@ -6,6 +6,12 @@ import { Button, Modal } from '@material-ui/core';
 import Sent from './Inbox/Sent';
 import './Letter.scss';
 
+/**
+ * @param {boolean} props.open if the letter is open or not
+ * @param {Number} props.maxLength max char length of the letter
+ * @param {function} props.onClose function when user clicks outside the borders of the letters
+ * @param {function} props.onSend function that gets called when user sends letter (letter content is passed to this function)
+ */
 export default function Letter(props) {
   const [sent, setSent] = useState(false);
   const [letter, setLetter] = useState('');
