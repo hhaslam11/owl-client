@@ -35,7 +35,7 @@ export default function Dashboard(props) {
   useEffect(() => {
     getLocation(iso2 => {
       setCookie('country', iso2);
-      setState({ ...state, userCountryId: iso2});
+      setState({ ...state, userCountryId: iso2 });
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

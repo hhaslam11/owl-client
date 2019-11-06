@@ -70,6 +70,19 @@ storiesOf('Map', module)
       />
     );
   })
+  .add('with flightpaths', () => {
+    return (
+      <Map 
+        color="blue"
+        flightPath={{
+          from: "CA",
+          to: "DE",
+          progress: 30, //percent out of 100
+          time: 2880 //minutes
+        }}
+      />
+    )
+  })
   .add('Fully functional map', () => {
     const data = [{
       "id": "US",

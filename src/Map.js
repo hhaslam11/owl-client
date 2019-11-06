@@ -55,6 +55,20 @@ export default function Map(props) {
     // Add some data
     polygonSeries.data = props.data;
 
+    // Add flight path
+    let lineSeries = map.series.push(new am4maps.MapLineSeries());
+    lineSeries.mapLines.template.strokeWidth = 4;
+    lineSeries.mapLines.template.stroke = am4core.color("#e03e96");
+    
+    lineSeries.data = [{
+      "multiGeoLine": [
+        [
+          { "latitude": 48.856614, "longitude": 2.352222 },
+          { "latitude": 49.282729, "longitude": -123.120738 }
+        ]
+      ]
+    }];
+
     // Bind "fill" property to "fill" key in data
     polygonTemplate.propertyFields.fill = "fill";
     
