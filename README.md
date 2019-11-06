@@ -7,6 +7,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Copy `.env.local.example` to `.env.local`, and change it to use the address youre running the api server on
 
+## Install dependencies
+
+`npm i`
+
 ## Available Scripts
 
 In the project directory, you can run:
