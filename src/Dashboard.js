@@ -21,6 +21,7 @@ import Sidebar from './Sidebar';
 import Map from './Map';
 import Letter from './Letter'
 import useLocation from './hooks/useLocation';
+import sendLetter from './helpers/sendLetter';
 
 /**
  * @param {function} props.logout the function to call when user clicks logout
@@ -28,18 +29,22 @@ import useLocation from './hooks/useLocation';
 export default function Dashboard(props) {
   
   const history = useHistory();
-  const setCookie = useCookies(['user'])[1];
+  const [cookies, setCookie] = useCookies(['user']);
   const getLocation = useLocation;
 
   useEffect(() => {
-    getLocation(iso2 => setCookie('country', iso2));
+    getLocation(iso2 => {
+      setCookie('country', iso2);
+      setState({ ...state, userCountryId: iso2});
+    });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [state, setState] = useState({
     open: false,
     selected: null,
-    countryName: null
+    countryName: null,
+    userCountryId: null
   });
 
   const [letterOpen, setLetterOpen] = useState(false);
@@ -87,7 +92,15 @@ export default function Dashboard(props) {
 
   return (
     <>
-      <Letter open={letterOpen}/>
+      <Letter
+        open={letterOpen}
+        onClose={() => setLetterOpen(false)}
+        onSend={content => {
+          setLetterOpen(false);
+          sendLetter(cookies.id, state.userCountryId, state.selected, content);
+          setState({ ...state, selected: null });
+        }}
+      />
       <Navigation
         title="Owl"
         menuList={navMenu}
