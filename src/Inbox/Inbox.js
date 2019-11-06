@@ -81,7 +81,7 @@ export default function Inbox() {
   const navMenu = (
     <MenuList>
       <MenuItem onClick={() => history.push('/')}>Map</MenuItem>
-      <MenuItem>Post Office</MenuItem>
+      <MenuItem onClick={() => history.push('/postoffice')}>Post Office</MenuItem>
       <MenuItem>Logout</MenuItem>
     </MenuList>
   )
