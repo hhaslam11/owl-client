@@ -84,7 +84,7 @@ export default function PostOffice() {
   return (
     <>
       <Navigation
-        title="Owl"
+        title="Owl Mail"
         menuList={navMenu}
         backgroundColor="#012b54"
       />
@@ -96,8 +96,8 @@ export default function PostOffice() {
           `setModal(false);` to close the modal
         </div>
       </Modal>
-      <div className="post-office-container">
-        The main html code would go here
+      <div class="post-office-container">
+        <img onClick={() => setModal(true)} height="500px" alt="post office drawing" src="/images/mailbox.png"/>
         <Button onClick={() => setModal(true)}>Example of opening the modal</Button>
       </div>
     </>
