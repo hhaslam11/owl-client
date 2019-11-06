@@ -20,12 +20,21 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1
   },
   navbar: {
+    display: "flex",
+    justifyContent: "space-between",
     backgroundColor: props => props.backgroundColor,
-    zIndex: theme.zIndex.drawer + 1
+    zIndex: theme.zIndex.drawer + 1,
+    height: "50px"
+  },
+  navRight: {
+    display: "flex",
+    justifyContent: "left"
   },
   title: {
     flexGrow: 1,
-    color: props => props.color || 'white'
+    color: props => props.color || 'white',
+    fontFamily: "'Fredoka One', cursive",
+    fontSize: "35px"
   },
   menuButton: {
     color: props => props.color || 'white'
@@ -66,9 +75,12 @@ export default function Map(props) {
     <div className={classes.root}>
       <AppBar position="fixed">
         <Toolbar className={classes.navbar}>
-          <Typography variant="h6" className={classes.title}>
-            {props.title || 'Home'}
-          </Typography>
+          <div className={classes.navRight}>
+            <Typography variant="h6" className={classes.title}>
+              {props.title || 'Home'}
+            </Typography>
+            <img class="nav" height="50px" alt="owl logo" src="/images/owl.png"/>
+          </div>
 
           <IconButton ref={anchorRef} onClick={handleMenuClick} edge="start" className={classes.menuButton}>
             <MenuIcon />

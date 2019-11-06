@@ -45,19 +45,20 @@ const useStyles = makeStyles(theme => ({
 const getData = id => {
   return axios.get(`${API_SERVER}/users/${id}/letters`)
     .then(res => {
-      const received_letters = res.data.data.received_letters;
+      const users = res.data.data;
 
-      console.log(received_letters);
       const data = {};
-      for (const el of received_letters) {
-        data[el.id] = {
-          letterId: el.id,
-          username: el.sender.username,
-          country: el.sender.country.name,
-          countryId: el.sender.country.abbreviation,
-          flag: el.sender.country.flag_image,
-          unread: !el.read,
-          content: el.content
+
+      for (const user of users) {
+        data[user.letters[user.letters.length - 1].letter_id] = {
+          letterId: user.letters[user.letters.length - 1].letter_id,
+          username: user.username,
+          country: user.country.name,
+          countryId: user.country.abbreviation,
+          flag: user.country.flag_image,
+          unread: !user.letters[user.letters.length - 1].read,
+          content: user.letters[user.letters.length - 1].content,
+          letters: user.letters
         }
       }
 
@@ -97,10 +98,9 @@ export default function Inbox() {
     if (!id) {
       setSelected(0);
       return;
-    } 
+    }
 
     if (sidebarData.current[id].unread) {
-
       // For now, im just assuming the request works fine.
       // It would be nice to have error checking- not a priority at the
       // moment, though. <3
@@ -118,6 +118,12 @@ export default function Inbox() {
     // on first render, and save it in sidebarData
     getData(devUserId || cookies.id)
       .then(data => {
+
+        for (const user in data) {
+          if (data[user].letters[data[user].letters.length - 1].sender === (devUserId || Number(cookies.id))) {
+            data[user].unread = false;
+          }
+        }
 
         sidebarData.current = (data);
         select(Object.keys(data)[0]);
@@ -143,7 +149,7 @@ export default function Inbox() {
     if (!Array.isArray(inboxList)) inboxList = [];
     inboxList.push((
       <InboxListItem
-        username={sidebarData.current[i].username}
+        username={sidebarData.current[i].username ? sidebarData.current[i].username : "Not picked up"}
         country={sidebarData.current[i].country}
         flag={sidebarData.current[i].flag}
         unread={sidebarData.current[i].unread}
@@ -151,6 +157,26 @@ export default function Inbox() {
         selected={selected === i}
       />
     ))
+  }
+
+  let contentList = [];
+  if (selected) {
+    for (const letter of sidebarData.current[selected].letters) {
+      contentList.push((
+        <>
+          <Container className="letter-container">
+            <Typography variant="h4">{letter.sent_by_current_user ? "You" : sidebarData.current[selected].username}</Typography>
+            <Typography variant="subtitle2">{letter.sent_date.slice(0,10)}</Typography>
+            <p className="letter-content">
+              {letter.content}
+            </p>
+          </Container>
+          <Divider />
+        </>
+      ));
+    }
+  } else {
+    contentList = null;
   }
 
   return (
@@ -164,7 +190,7 @@ export default function Inbox() {
       }}
     />
     <Navigation
-        title="Owl"
+        title="Owl Mail"
         menuList={navMenu}
         backgroundColor="#012b54"
     />
@@ -181,15 +207,7 @@ export default function Inbox() {
         />
       </div>
       <main className={classes.content}>
-        <Container className="letter-container">
-          <Typography variant="h4">{selected ? sidebarData.current[selected].username : null}</Typography>
-          <Typography variant="subtitle2">{selected ? sidebarData.current[selected].country : null}</Typography>
-          <p className="letter-content">
-            {selected ? sidebarData.current[selected].content : null}
-          </p>
-        </Container>
-        <Divider />
-
+        {contentList}
         <Container className="reply-container" >
           <Typography variant="h4" className="reply-header">Reply</Typography>
           <TextareaAutosize
