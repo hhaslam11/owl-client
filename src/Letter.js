@@ -7,7 +7,6 @@ import Sent from './Inbox/Sent';
 import './Letter.scss';
 
 export default function Letter(props) {
-  // const [state, setState] = useState(false);
   const [sent, setSent] = useState(false);
   const [letter, setLetter] = useState('');
 
@@ -17,11 +16,15 @@ export default function Letter(props) {
       open={sent}
       onClose={() => {setSent(false)}}
     />
-    <Modal open={props.open}>
+    <Modal
+      open={props.open}
+      onClose={() => props.onClose()}
+    >
       <>
       <div className="new-letter-container">
         <div className="new-letter-container-inner">
           <textarea
+            placeholder="Write your letter.."
             id="letter"
             maxlength={props.maxlength || "700"}
             value={letter}
@@ -42,7 +45,6 @@ export default function Letter(props) {
           </div>
         </div>
       </div>
-      
       </>
     </Modal>
     </>

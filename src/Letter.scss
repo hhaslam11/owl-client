@@ -1,7 +1,7 @@
 @import "variables";
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
 
-$debug: false;
+$debug: true;
 
 textarea#letter {
   background-color: burlywood;
@@ -32,7 +32,6 @@ textarea#letter {
 
 .new-letter-container {
   margin-top: 7%;
-
   display: flex;
   justify-content: center;
 
