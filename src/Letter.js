@@ -7,7 +7,7 @@ import Sent from './Inbox/Sent';
 import './Letter.scss';
 
 export default function Letter(props) {
-  const [state, setState] = useState(props);
+  const [state, setState] = useState(props.open);
   const [sent, setSent] = useState(false);
   const [letter, setLetter] = useState('');
 
@@ -25,7 +25,7 @@ export default function Letter(props) {
             id="letter"
             maxlength={props.maxlength || "700"}
             value={letter}
-            onChange={(e) => setLetter(e.target.value)}
+            onChange={e => setLetter(e.target.value)}
           />
 
           <div className="letter-btn-container">
@@ -35,7 +35,7 @@ export default function Letter(props) {
               onClick={() => {
                 setSent(true);
                 setState(false);
-                props.cb(letter);
+                props.onSend && props.onSend(letter);
               }}
             >
               Send

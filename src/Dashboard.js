@@ -19,6 +19,7 @@ import PublicIcon from '@material-ui/icons/Public';
 import Navigation from './Navigation';
 import Sidebar from './Sidebar';
 import Map from './Map';
+import Letter from './Letter'
 import useLocation from './hooks/useLocation';
 
 /**
@@ -41,6 +42,8 @@ export default function Dashboard(props) {
     selected: null,
     countryName: null
   });
+
+  const [letterOpen, setLetterOpen] = useState(false);
 
   const navMenu = (
     <MenuList>
@@ -70,7 +73,12 @@ export default function Dashboard(props) {
       </List>
       <Divider />
       <List>
-        <ListItem button>
+        <ListItem
+          button
+          onClick={() => {
+            setLetterOpen(true);
+          }}
+        >
           <ListItemIcon><MailIcon /></ListItemIcon>
           <ListItemText primary="Send letter" />
         </ListItem>
@@ -80,6 +88,7 @@ export default function Dashboard(props) {
 
   return (
     <>
+      <Letter open={letterOpen}/>
       <Navigation
         title="Owl"
         menuList={navMenu}
