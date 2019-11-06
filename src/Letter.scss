@@ -1,7 +1,9 @@
 @import "variables";
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
 
-textarea.letter {
+$debug: false;
+
+textarea#letter {
   background-color: burlywood;
 
   font-size: 20px;
@@ -17,11 +19,48 @@ textarea.letter {
   border-radius: 8px;
 }
 
+.invisible {
+  display: none;
+}
+
 .shrink {
   animation-name: shrink-animation;
   animation-duration: 1s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
+}
+
+.new-letter-container {
+  margin: auto;
+  margin-top: 7%;
+  width: 420px;
+
+  @if $debug {
+    border: 2px solid red;
+  }
+}
+
+.new-letter-container-inner {
+
+  @if $debug {
+    border: 2px solid yellow;
+  }
+}
+
+.letter-btn-container {
+  display: flex;
+  justify-content: flex-end;
+
+  @if $debug {
+    border: 2px solid green;
+  }
+
+  .button {
+    background-color: lighten($bg-color-3, 10%);
+  }
+  .button:hover {
+    background-color: $bg-color-3;
+  }
 }
 
 @keyframes shrink-animation {

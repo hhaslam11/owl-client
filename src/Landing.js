@@ -130,7 +130,7 @@ export default function Landing(props) {
         <div class="top-logo">
           <span class="landing-span">Owl Mail</span>
         </div>
-        <img class="landing" height="500px" alt="owl logo" src="/images/owltakingovertheworld.png"/>
+        <img class="landing" height="500px" alt="owl logo" src="/images/owl.gif"/>
         <br/>
         <div class="buttons">
           <Button className={classes.landingBtn} variant="contained" size="large" color="primary" onClick={() => {setLogin({ ...login, open: true })}}>Login</Button>
