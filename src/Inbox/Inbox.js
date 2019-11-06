@@ -32,7 +32,7 @@ const drawerWidth = '300px';
 // Override logged in userid. Only use this for development purposes, otherwise set to null
 // 93 is a good example
 // 300 is a blank example
-const devUserId = 303;
+const devUserId = null;
 
 const useStyles = makeStyles(theme => ({
   content: {
@@ -48,8 +48,9 @@ const getData = id => {
       const users = res.data.data;
 
       const data = {};
-      for (const user of users) {
 
+      for (const user of users) {
+        console.log(user)
         data[user.letters[user.letters.length - 1].letter_id] = {
           letterId: user.letters[user.letters.length - 1].letter_id,
           username: user.username,
