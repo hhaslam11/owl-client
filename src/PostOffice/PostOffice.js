@@ -11,7 +11,7 @@ import { Modal, Button } from '@material-ui/core';
 
 // Internal components
 import Navigation from '../Navigation';
-
+import Letter from './Letter'
 // Sass
 import "./PostOffice.scss";
 
@@ -27,20 +27,32 @@ const API_SERVER = process.env.REACT_APP_API_SERVER;
  * this function is outside of the main component, it doesnt have access to
  * cookies, props, state, etc.
  */
-const onLetterSelect = (cb) => {
+const onLetterSelect = (cb, userID, countryID) => {
   
   //set path for api here
-  axios.put(`${API_SERVER}/path`, {
-    //This is the object that get's sent in the put request.
-    //Typical object structure. 
-    // key: value
+  axios.put(`${API_SERVER}/postoffice/245/new`, {
+    country_code: countryID,
+    receiver_id: userID
   })
     .then(res => {
+      const result = {
+        id: res.data.id,
+        sender: res.data.sender.username,
+        content: res.data.content,
+        country: {
+          name: res.data.sender.country.name,
+          code: res.data.sender.country.abbreviation,
+          flag: res.data.sender.country.flag_image
+        },
+        sent: res.data.sent_date
+      };
+      
+
 
       //Do whatever extra stuff you might want to do here,
       //then pass the response data (or some custom formatted data)
       //to the callback
-      cb(res);
+      cb(result);
 
     })
     .catch(e => {
@@ -55,22 +67,17 @@ const onLetterSelect = (cb) => {
 export default function PostOffice() {
 
   // Hooks 🦉
-  
-  // This is just a weird way of redirecting with reactrouter.
-  // history.push('url');
   const history = useHistory();
-  
-  // This sets whether or not the modal is visible
-  // setModal(true) to open it
-  // setModal(false) to close it
-  const [modal, setModal] = useState(false);
+
+  const [letterOpen, setLetterOpen] = useState(false);
+  const [letterData, setLetterData] = useState('');
 
   // Cookies
   // cookies.id will give you the current user id
   // cookies.country will give you the current users country (iso2 code)
   // setCookies('id', value); to set a cookie. If you don't need to set
   // cookies, just remove setCookie from the array
-  const [cookies, setCookie] = useCookies(['user']);
+  const [cookies] = useCookies(['user']);
 
   //This if for the navbar, you probably won't need to touch this
   const navMenu = (
@@ -81,6 +88,8 @@ export default function PostOffice() {
     </MenuList>
   )
 
+ ;
+  
   return (
     <>
       <Navigation
@@ -88,17 +97,30 @@ export default function PostOffice() {
         menuList={navMenu}
         backgroundColor="#012b54"
       />
-      <Modal open={modal}>
-        <div className="">
-          Put your model html here. You can style it
-          however you want. There should also be a button
-          some sort of functionality that calls
-          `setModal(false);` to close the modal
-        </div>
-      </Modal>
-      <div class="post-office-container">
-        <img onClick={() => setModal(true)} height="500px" alt="post office drawing" src="/images/mailbox.png"/>
-        <Button onClick={() => setModal(true)}>Example of opening the modal</Button>
+      <Letter
+        open={letterOpen}
+        onOpen
+        letterData={letterData}
+        onClose={() => setLetterOpen(false)}
+        onReply={() => {
+          setLetterOpen(false);
+          // replyLetter(letterID);
+          history.push('/inbox');
+        }}
+      />
+      <div className="post-office-container">
+        <img
+          className="post-office-image"
+          height="500px"
+          alt="post office drawing"
+          src="/images/mailbox.png"
+          onClick={() => {
+            onLetterSelect(res => {
+              setLetterData(res);
+              setLetterOpen(true);
+            }, cookies.id, cookies.country);
+          }}
+        />
       </div>
     </>
   )

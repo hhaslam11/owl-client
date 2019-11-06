@@ -21,5 +21,13 @@
 
 }
 
+img.post-office-image {
+  :hover {
+    cursor: grab;
+  }
+  :active {
+    cursor: grabbing;
+  }
+}
 
 

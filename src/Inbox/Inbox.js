@@ -186,13 +186,12 @@ export default function Inbox() {
       country={selected && sidebarData.current[selected].country}
       onClose={() => {
         setSelected(null);
-        history.push('/');
       }}
     />
     <Navigation
-        title="Owl Mail"
-        menuList={navMenu}
-        backgroundColor="#012b54"
+      title="Owl Mail"
+      menuList={navMenu}
+      backgroundColor="#012b54"
     />
     <div className="inbox">
 
