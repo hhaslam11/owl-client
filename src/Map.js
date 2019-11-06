@@ -19,7 +19,7 @@ const API_SERVER = process.env.REACT_APP_API_SERVER;
  * @param {string} props.width the width of the map (default 100vw)
  * @param {string} props.height the height of the map (default 100vh)
  * @param {function(event)} props.onCountryClick callback function when a country was clicked
- * @param {object} props.flightPath 
+ * @param {object} props.flightPath optional data for flight path
  */
 export default function Map(props) {
   
