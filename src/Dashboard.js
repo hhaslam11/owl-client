@@ -23,7 +23,6 @@ import Letter from './Letter'
 import useLocation from './hooks/useLocation';
 
 /**
- * 
  * @param {function} props.logout the function to call when user clicks logout
  */
 export default function Dashboard(props) {
@@ -94,7 +93,7 @@ export default function Dashboard(props) {
         menuList={navMenu}
         backgroundColor="#012b54"
       />
-      <Sidebar 
+      <Sidebar
         isOpen={state.selected}
         displayUnderNavigation
         onClose={() => {setState({ ...state, selected: null, countryName: null })}}

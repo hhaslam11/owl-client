@@ -18,7 +18,11 @@ export default function Letter(props) {
     />
     <Modal
       open={props.open}
-      onClose={() => props.onClose()}
+      onClose={() => {
+        if (props.onClose) {
+          props.onClose();
+        }
+      }}
     >
       <>
       <div className="new-letter-container">
