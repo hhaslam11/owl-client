@@ -6,8 +6,20 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Divider from "@material-ui/core/Divider"
 import Badge from '@material-ui/core/Badge';
+import { makeStyles } from '@material-ui/core';
 
 import './InboxListItem.scss';
+
+const useStyles = makeStyles(({
+  listSelected: {
+    backgroundColor: '#043565',
+    color: "white",
+    "& p": {
+      color: "white"
+    }
+  }
+
+}));
 
 /**
  * @param {boolean} props.unread true will display the unread badge
@@ -18,7 +30,7 @@ import './InboxListItem.scss';
  * @param {boolean} props.selected true if its the currently selected letter
  */
 export default function Inbox(props) {
-  
+  const classes = useStyles();
   if (!props.username || !props.country || !props.flag) {
     console.error('Some of the props seem to be missing.');
     return null;
@@ -27,8 +39,8 @@ export default function Inbox(props) {
   return (
     <>
     <ListItem
-      button
-      disabled={props.selected}
+      button={!props.selected}
+      className={props.selected && classes.listSelected}
       onClick={props.onClick}
     >
       <ListItemAvatar style={{minWidth: "90px"} /* TODO maybe don't hardcode this */}>

@@ -32,7 +32,7 @@ const drawerWidth = '300px';
 // Override logged in userid. Only use this for development purposes, otherwise set to null
 // 93 is a good example
 // 300 is a blank example
-const devUserId = 93;
+const devUserId = 303;
 
 const useStyles = makeStyles(theme => ({
   content: {
@@ -49,6 +49,7 @@ const getData = id => {
 
       const data = {};
       for (const user of users) {
+
         data[user.letters[user.letters.length - 1].letter_id] = {
           letterId: user.letters[user.letters.length - 1].letter_id,
           username: user.username,
@@ -100,7 +101,6 @@ export default function Inbox() {
     } 
 
     if (sidebarData.current[id].unread) {
-
       // For now, im just assuming the request works fine.
       // It would be nice to have error checking- not a priority at the
       // moment, though. <3
@@ -118,6 +118,12 @@ export default function Inbox() {
     // on first render, and save it in sidebarData
     getData(devUserId || cookies.id)
       .then(data => {
+
+        for (const user in data) {
+          if (data[user].letters[data[user].letters.length - 1].sender === (devUserId || Number(cookies.id))) {
+            data[user].unread = false;
+          }
+        }
 
         sidebarData.current = (data);
         select(Object.keys(data)[0]);
@@ -143,7 +149,7 @@ export default function Inbox() {
     if (!Array.isArray(inboxList)) inboxList = [];
     inboxList.push((
       <InboxListItem
-        username={sidebarData.current[i].username}
+        username={sidebarData.current[i].username ? sidebarData.current[i].username : "Not picked up"}
         country={sidebarData.current[i].country}
         flag={sidebarData.current[i].flag}
         unread={sidebarData.current[i].unread}
@@ -159,7 +165,7 @@ export default function Inbox() {
       contentList.push((
         <>
           <Container className="letter-container">
-            <Typography variant="h4">{letter.sent_by_current_user ? "You:" : sidebarData.current[selected].username}</Typography>
+            <Typography variant="h4">{letter.sent_by_current_user ? "You" : sidebarData.current[selected].username}</Typography>
             <Typography variant="subtitle2">{letter.sent_date.slice(0,10)}</Typography>
             <p className="letter-content">
               {letter.content}
