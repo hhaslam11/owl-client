@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
+
+//am4 charts
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4maps from "@amcharts/amcharts4/maps";
 import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
 
 import "./Map.scss"
+
+const API_SERVER = process.env.REACT_APP_API_SERVER;
 
 /**
  * @param {string} props.color The default color of the countries
@@ -14,8 +19,35 @@ import "./Map.scss"
  * @param {string} props.width the width of the map (default 100vw)
  * @param {string} props.height the height of the map (default 100vh)
  * @param {function(event)} props.onCountryClick callback function when a country was clicked
+ * @param {object} props.flightPath 
  */
 export default function Map(props) {
+  
+  const [route, setRoute] = useState(null);
+
+  useEffect(() => {
+    if (props.flightPath) {
+      const getFromCoords = axios.get(`${API_SERVER}/country/${props.flightPath.from}`);
+      const getToCoords   = axios.get(`${API_SERVER}/country/${props.flightPath.to}`);
+      
+      Promise.all([getFromCoords, getToCoords])
+        .then(([fromCoords, toCoords]) => {
+        
+          const from = fromCoords.data.data;
+          const to   = toCoords.data.data;
+        
+          setRoute([{
+            "multiGeoLine": [
+              [
+                { "latitude": from.lat, "longitude": from.lon },
+                { "latitude": to.lat,   "longitude": to.lon }
+              ]
+            ]
+          }]);
+        });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   
   //TODO
   //Set timeout is here because the div needs to be rendered on the screen
@@ -56,19 +88,13 @@ export default function Map(props) {
     polygonSeries.data = props.data;
 
     // Add flight path
-    let lineSeries = map.series.push(new am4maps.MapLineSeries());
-    lineSeries.mapLines.template.strokeWidth = 4;
-    lineSeries.mapLines.template.stroke = am4core.color("#e03e96");
-    
-    lineSeries.data = [{
-      "multiGeoLine": [
-        [
-          { "latitude": 48.856614, "longitude": 2.352222 },
-          { "latitude": 49.282729, "longitude": -123.120738 }
-        ]
-      ]
-    }];
-
+    if (route) {
+      let lineSeries = map.series.push(new am4maps.MapLineSeries());
+      lineSeries.mapLines.template.strokeWidth = 4;
+      lineSeries.mapLines.template.stroke = am4core.color("#e03e96");
+      
+      lineSeries.data = route;
+    }
     // Bind "fill" property to "fill" key in data
     polygonTemplate.propertyFields.fill = "fill";
     
