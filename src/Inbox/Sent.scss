@@ -1,0 +1,22 @@
+@import '../variables';
+
+.sent-message {
+  color: $main-text-color;
+
+  position: absolute;
+  // width: 400px;
+  
+  background-color: lighten($bg-color, 10%);
+  padding: 30px;
+  padding-top: 10px;
+  border: 2px solid $bg-color;
+  border-radius: 10px;
+  outline: 0;
+  top: 40%;
+  left: 40%;
+
+  .btn-div {
+    display: flex;
+    justify-content: space-between;
+  }
+}

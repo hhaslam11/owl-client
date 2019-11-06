@@ -15,14 +15,16 @@ import { makeStyles } from '@material-ui/core/styles';
 import { TextareaAutosize, Button } from "@material-ui/core";
 
 // Internal components
-import Sidebar from '../Sidebar';
 import SidebarLoading from './SidebarLoading';
+import Sent from './Sent';
+import Sidebar from '../Sidebar';
 import InboxListItem from '../Inbox/InboxListItem';
 import Navigation from '../Navigation';
 
 // Sass
 import "./Inbox.scss"
 import SidebarEmpty from './SidebarEmpty';
+import sendLetter from '../helpers/sendLetter';
 
 const API_SERVER = process.env.REACT_APP_API_SERVER;
 const drawerWidth = '300px';
@@ -48,8 +50,10 @@ const getData = id => {
       const data = {};
       for (const user of users) {
         data[user.letters[user.letters.length - 1].letter_id] = {
+          letterId: user.letters[user.letters.length - 1].letter_id,
           username: user.username,
           country: user.country.name,
+          countryId: user.country.abbreviation,
           flag: user.country.flag_image,
           unread: !user.letters[user.letters.length - 1].read,
           content: user.letters[user.letters.length - 1].content,
@@ -64,7 +68,12 @@ const getData = id => {
 export default function Inbox() {
   const classes = useStyles();
   const history = useHistory();
+  
+  //state
   const [selected, setSelected] = useState(null);
+  const [textArea, setTextArea] = useState('');
+  const [sent, setSent] = useState(false);
+
   const sidebarData = useRef(null);
   const [cookies] = useCookies(['user']);
 
@@ -103,7 +112,6 @@ export default function Inbox() {
 
     setSelected(id);
   }
-
   useEffect(() => {
     
     // This is going to get the data from the api server
@@ -122,12 +130,15 @@ export default function Inbox() {
   let inboxList = <SidebarLoading/>;
   if (selected === 0) inboxList = <SidebarEmpty/>
 
-  /*
-   * Re-creates the sidebar data every render
-   * This isnt the best way of doing thing, but
-   * it works for now. useRef would probably be 
-   * better here
-   */
+  const send = () => {
+    const toCountry = sidebarData.current[selected].countryId;
+    const letterId  = sidebarData.current[selected].letterId;
+
+    sendLetter(cookies.id, cookies.country, toCountry, textArea, letterId);
+    setSent(true);
+    setTextArea('');
+  };
+
   for (const i in sidebarData.current) {
     if (!Array.isArray(inboxList)) inboxList = [];
     inboxList.push((
@@ -164,6 +175,14 @@ export default function Inbox() {
 
   return (
     <>
+    <Sent
+      open={sent}
+      country={selected && sidebarData.current[selected].country}
+      onClose={() => {
+        setSelected(null);
+        history.push('/');
+      }}
+    />
     <Navigation
         title="Owl"
         menuList={navMenu}
@@ -188,6 +207,8 @@ export default function Inbox() {
           <TextareaAutosize
             placeholder="Write your letter..."
             disabled={!selected}
+            value={textArea}
+            onChange={e => setTextArea(e.target.value)}
           />
 
           <div className="button-div">
@@ -196,6 +217,7 @@ export default function Inbox() {
               size="small"
               endIcon={<SendIcon/>}
               disabled={!selected}
+              onClick={send}
             >
               Send
             </Button>
