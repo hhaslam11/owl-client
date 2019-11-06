@@ -31,9 +31,9 @@ textarea#letter {
 }
 
 .new-letter-container {
+  margin: auto;
   margin-top: 7%;
-  display: flex;
-  justify-content: center;
+  width: 420px;
 
   @if $debug {
     border: 2px solid red;

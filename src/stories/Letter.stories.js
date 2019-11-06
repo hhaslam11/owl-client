@@ -26,9 +26,3 @@ storiesOf('Letter', module)
       </>
     )
   });
-
-/*
-because im lazy:
-.add('', () => {})
-.add('', () => <Letter />)
-*/
