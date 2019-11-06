@@ -15,14 +15,16 @@ import { makeStyles } from '@material-ui/core/styles';
 import { TextareaAutosize, Button } from "@material-ui/core";
 
 // Internal components
-import Sidebar from '../Sidebar';
 import SidebarLoading from './SidebarLoading';
+import Sent from './Sent';
+import Sidebar from '../Sidebar';
 import InboxListItem from '../Inbox/InboxListItem';
 import Navigation from '../Navigation';
 
 // Sass
 import "./Inbox.scss"
 import SidebarEmpty from './SidebarEmpty';
+import sendLetter from '../helpers/sendLetter';
 
 const API_SERVER = process.env.REACT_APP_API_SERVER;
 const drawerWidth = '300px';
@@ -30,7 +32,7 @@ const drawerWidth = '300px';
 // Override logged in userid. Only use this for development purposes, otherwise set to null
 // 93 is a good example
 // 300 is a blank example
-const devUserId = 93;
+const devUserId = null;
 
 const useStyles = makeStyles(theme => ({
   content: {
@@ -43,16 +45,20 @@ const useStyles = makeStyles(theme => ({
 const getData = id => {
   return axios.get(`${API_SERVER}/users/${id}/letters`)
     .then(res => {
-      const received_letters = res.data.data.received_letters;
+      const users = res.data.data;
 
       const data = {};
-      for (const el of received_letters) {
-        data[el.id] = {
-          username: el.sender.username,
-          country: el.sender.country.name,
-          flag: el.sender.country.flag_image,
-          unread: !el.read,
-          content: el.content
+
+      for (const user of users) {
+        data[user.letters[user.letters.length - 1].letter_id] = {
+          letterId: user.letters[user.letters.length - 1].letter_id,
+          username: user.username,
+          country: user.country.name,
+          countryId: user.country.abbreviation,
+          flag: user.country.flag_image,
+          unread: !user.letters[user.letters.length - 1].read,
+          content: user.letters[user.letters.length - 1].content,
+          letters: user.letters
         }
       }
 
@@ -63,7 +69,12 @@ const getData = id => {
 export default function Inbox() {
   const classes = useStyles();
   const history = useHistory();
+  
+  //state
   const [selected, setSelected] = useState(null);
+  const [textArea, setTextArea] = useState('');
+  const [sent, setSent] = useState(false);
+
   const sidebarData = useRef(null);
   const [cookies] = useCookies(['user']);
 
@@ -87,10 +98,9 @@ export default function Inbox() {
     if (!id) {
       setSelected(0);
       return;
-    } 
+    }
 
     if (sidebarData.current[id].unread) {
-
       // For now, im just assuming the request works fine.
       // It would be nice to have error checking- not a priority at the
       // moment, though. <3
@@ -102,13 +112,18 @@ export default function Inbox() {
 
     setSelected(id);
   }
-
   useEffect(() => {
     
     // This is going to get the data from the api server
     // on first render, and save it in sidebarData
     getData(devUserId || cookies.id)
       .then(data => {
+
+        for (const user in data) {
+          if (data[user].letters[data[user].letters.length - 1].sender === (devUserId || Number(cookies.id))) {
+            data[user].unread = false;
+          }
+        }
 
         sidebarData.current = (data);
         select(Object.keys(data)[0]);
@@ -121,17 +136,20 @@ export default function Inbox() {
   let inboxList = <SidebarLoading/>;
   if (selected === 0) inboxList = <SidebarEmpty/>
 
-  /*
-   * Re-creates the sidebar data every render
-   * This isnt the best way of doing thing, but
-   * it works for now. useRef would probably be 
-   * better here
-   */
+  const send = () => {
+    const toCountry = sidebarData.current[selected].countryId;
+    const letterId  = sidebarData.current[selected].letterId;
+
+    sendLetter(cookies.id, cookies.country, toCountry, textArea, letterId);
+    setSent(true);
+    setTextArea('');
+  };
+
   for (const i in sidebarData.current) {
     if (!Array.isArray(inboxList)) inboxList = [];
     inboxList.push((
       <InboxListItem
-        username={sidebarData.current[i].username}
+        username={sidebarData.current[i].username ? sidebarData.current[i].username : "Not picked up"}
         country={sidebarData.current[i].country}
         flag={sidebarData.current[i].flag}
         unread={sidebarData.current[i].unread}
@@ -141,10 +159,38 @@ export default function Inbox() {
     ))
   }
 
+  let contentList = [];
+  if (selected) {
+    for (const letter of sidebarData.current[selected].letters) {
+      contentList.push((
+        <>
+          <Container className="letter-container">
+            <Typography variant="h4">{letter.sent_by_current_user ? "You" : sidebarData.current[selected].username}</Typography>
+            <Typography variant="subtitle2">{letter.sent_date.slice(0,10)}</Typography>
+            <p className="letter-content">
+              {letter.content}
+            </p>
+          </Container>
+          <Divider />
+        </>
+      ));
+    }
+  } else {
+    contentList = null;
+  }
+
   return (
     <>
+    <Sent
+      open={sent}
+      country={selected && sidebarData.current[selected].country}
+      onClose={() => {
+        setSelected(null);
+        history.push('/');
+      }}
+    />
     <Navigation
-        title="Owl"
+        title="Owl Mail"
         menuList={navMenu}
         backgroundColor="#012b54"
     />
@@ -161,20 +207,14 @@ export default function Inbox() {
         />
       </div>
       <main className={classes.content}>
-        <Container className="letter-container">
-          <Typography variant="h4">{selected ? sidebarData.current[selected].username : null}</Typography>
-          <Typography variant="subtitle2">{selected ? sidebarData.current[selected].country : null}</Typography>
-          <p className="letter-content">
-            {selected ? sidebarData.current[selected].content : null}
-          </p>
-        </Container>
-        <Divider />
-
+        {contentList}
         <Container className="reply-container" >
           <Typography variant="h4" className="reply-header">Reply</Typography>
           <TextareaAutosize
             placeholder="Write your letter..."
             disabled={!selected}
+            value={textArea}
+            onChange={e => setTextArea(e.target.value)}
           />
 
           <div className="button-div">
@@ -183,6 +223,7 @@ export default function Inbox() {
               size="small"
               endIcon={<SendIcon/>}
               disabled={!selected}
+              onClick={send}
             >
               Send
             </Button>
