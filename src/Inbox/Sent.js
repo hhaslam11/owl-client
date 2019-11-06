@@ -6,7 +6,6 @@ import CloseIcon from '@material-ui/icons/Close';
 import './Sent.scss';
 
 /**
- * 
  * @param {boolean} props.open is modal visable
  * @param {boolean} props.country the destination country
  * @param {function} props.onClose the function to call when pressing the 'x' button

@@ -19,28 +19,35 @@ import PublicIcon from '@material-ui/icons/Public';
 import Navigation from './Navigation';
 import Sidebar from './Sidebar';
 import Map from './Map';
+import Letter from './Letter'
 import useLocation from './hooks/useLocation';
+import sendLetter from './helpers/sendLetter';
 
 /**
- * 
  * @param {function} props.logout the function to call when user clicks logout
  */
 export default function Dashboard(props) {
   
   const history = useHistory();
-  const setCookie = useCookies(['user'])[1];
+  const [cookies, setCookie] = useCookies(['user']);
   const getLocation = useLocation;
 
   useEffect(() => {
-    getLocation(iso2 => setCookie('country', iso2));
+    getLocation(iso2 => {
+      setCookie('country', iso2);
+      setState({ ...state, userCountryId: iso2});
+    });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [state, setState] = useState({
     open: false,
     selected: null,
-    countryName: null
+    countryName: null,
+    userCountryId: null
   });
+
+  const [letterOpen, setLetterOpen] = useState(false);
 
   const navMenu = (
     <MenuList>
@@ -70,7 +77,12 @@ export default function Dashboard(props) {
       </List>
       <Divider />
       <List>
-        <ListItem button>
+        <ListItem
+          button
+          onClick={() => {
+            setLetterOpen(true);
+          }}
+        >
           <ListItemIcon><MailIcon /></ListItemIcon>
           <ListItemText primary="Send letter" />
         </ListItem>
@@ -80,13 +92,22 @@ export default function Dashboard(props) {
 
   return (
     <>
+      <Letter
+        open={letterOpen}
+        onClose={() => setLetterOpen(false)}
+        onSend={content => {
+          setLetterOpen(false);
+          sendLetter(cookies.id, state.userCountryId, state.selected, content);
+          setState({ ...state, selected: null });
+        }}
+      />
       <Navigation
         title="Owl"
         menuList={navMenu}
         backgroundColor="#012b54"
       />
-      <Sidebar 
-        isOpen={state.selected}
+      <Sidebar
+        isOpen={state.selected ? true : false}
         displayUnderNavigation
         onClose={() => {setState({ ...state, selected: null, countryName: null })}}
         listItems={countryInfo}
