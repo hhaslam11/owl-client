@@ -88,7 +88,7 @@ export default function PostOffice() {
         menuList={navMenu}
         backgroundColor="#012b54"
       />
-      <Modal open={props.open}>
+      <Modal open={modal}>
         <div className="">
           Put your model html here. You can style it
           however you want. There should also be a button
@@ -96,7 +96,7 @@ export default function PostOffice() {
           `setModal(false);` to close the modal
         </div>
       </Modal>
-      <div>
+      <div className="post-office-container">
         The main html code would go here
         <Button onClick={() => setModal(true)}>Example of opening the modal</Button>
       </div>

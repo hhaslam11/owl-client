@@ -6,7 +6,12 @@
   display: flex;
   justify-content: flex-start;
   min-height: 100vh;
-  background-color: $bg-color;
+}
+
+.post-office-container {
+  
+  //Moves content below the navbar
+  margin-top: 75px;
 }
 
 
