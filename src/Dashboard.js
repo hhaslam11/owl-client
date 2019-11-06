@@ -107,7 +107,7 @@ export default function Dashboard(props) {
         backgroundColor="#012b54"
       />
       <Sidebar
-        isOpen={state.selected}
+        isOpen={state.selected ? true : false}
         displayUnderNavigation
         onClose={() => {setState({ ...state, selected: null, countryName: null })}}
         listItems={countryInfo}

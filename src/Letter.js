@@ -36,7 +36,7 @@ export default function Letter(props) {
           <textarea
             placeholder="Write your letter.."
             id="letter"
-            maxlength={props.maxlength || "700"}
+            maxLength={props.maxlength || "700"}
             value={letter}
             onChange={e => setLetter(e.target.value)}
           />
