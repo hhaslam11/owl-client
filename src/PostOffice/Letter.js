@@ -25,8 +25,8 @@ export default function Letter(props) {
         }
       }}
     >
-      <div className="new-letter-container">
-        <div className="new-letter-container-inner">
+      <div className="opened-letter-container">
+        <div className="opened-letter-container-inner">
 
           <ListItemAvatar style={{minWidth: "90px"}}>
             <img className="flag" alt={`${props.letterData.country.flag} flag`} src={props.letterData.country.flag} />
@@ -35,11 +35,11 @@ export default function Letter(props) {
           <Typography variant="h4">{props.letterData.sender}</Typography>
           <Typography variant="subtitle2">{props.letterData.sent.slice(0,10)}</Typography>
 
-          <p className="letter-content">
+          <p className="opened-letter-content">
             {props.letterData.content}
           </p>
 
-          <div className="letter-btn-container">
+          <div className="opened-letter-btn-container">
             <Button
               className="button"
               variant="contained"

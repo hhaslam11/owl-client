@@ -1,0 +1,36 @@
+@import "../variables";
+
+$debug: false;
+
+.opened-letter-container {
+  margin: auto;
+  margin-top: 7%;
+  width: 420px;
+
+  @if $debug {
+    border: 2px solid red;
+  }
+}
+
+.opened-letter-container-inner {
+
+  @if $debug {
+    border: 2px solid yellow;
+  }
+}
+
+.opened-letter-btn-container {
+  display: flex;
+  justify-content: flex-end;
+
+  @if $debug {
+    border: 2px solid green;
+  }
+
+  .button {
+    background-color: lighten($bg-color-3, 10%);
+  }
+  .button:hover {
+    background-color: $bg-color-3;
+  }
+}
