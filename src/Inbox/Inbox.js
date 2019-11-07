@@ -82,6 +82,7 @@ export default function Inbox() {
     <MenuList>
       <MenuItem onClick={() => history.push('/')}>Map</MenuItem>
       <MenuItem>Post Office</MenuItem>
+      <MenuItem onClick={() => history.push('/owls')}>My Owls</MenuItem>
       <MenuItem>Logout</MenuItem>
     </MenuList>
   )

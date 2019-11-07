@@ -53,6 +53,7 @@ export default function Dashboard(props) {
     <MenuList>
       <MenuItem onClick={() => history.push('/inbox')}>Inbox</MenuItem>
       <MenuItem>Post Office</MenuItem>
+      <MenuItem onClick={() => history.push('/owls')}>My Owls</MenuItem>
       <MenuItem onClick={props.logout}>Logout</MenuItem>
     </MenuList>
   )
