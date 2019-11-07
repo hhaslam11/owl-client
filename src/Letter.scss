@@ -4,7 +4,7 @@
 $debug: false;
 
 textarea#letter {
-  background-color: burlywood;
+  background-color: lighten($green-color-1, 40%);
 
   font-size: 20px;
   font-family: $font-family-1;
