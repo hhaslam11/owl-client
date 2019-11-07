@@ -5,6 +5,7 @@ import { Route, BrowserRouter as Router } from 'react-router-dom'
 import './index.scss';
 import App from './App';
 import Inbox from './Inbox/Inbox';
+import PostOffice from './PostOffice/PostOffice';
 
 import * as serviceWorker from './serviceWorker';
 
@@ -14,6 +15,7 @@ const routing = (
     <div>
       <Route exact path="/" component={App} />
       <Route exact path="/inbox" component={Inbox} />
+      <Route exact path="/postoffice" component={PostOffice} />
     </div>
   </Router>
 )

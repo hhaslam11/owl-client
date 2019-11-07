@@ -1,0 +1,58 @@
+@import "../variables";
+
+$debug: false;
+
+.opened-letter-container {
+
+  background-color: $bg-color;
+  
+  margin: auto;
+  margin-top: 7%;
+  width: 420px;
+  padding: 20px;
+  
+  outline: none;
+
+  @if $debug {
+    border: 2px solid red;
+  }
+}
+
+.opened-letter-header {
+  display: flex;
+  justify-content: space-between;
+
+  @if $debug {
+    border: 2px solid purple;
+  }
+
+  .flag {
+    margin-top: 15%;
+
+    @if $debug {
+      border: 2px solid cyan;
+    }
+  }
+}
+
+.opened-letter-container-inner {
+  @if $debug {
+    border: 2px solid yellow;
+  }
+}
+
+.opened-letter-btn-container {
+  display: flex;
+  justify-content: flex-end;
+
+  @if $debug {
+    border: 2px solid green;
+  }
+
+  .button {
+    background-color: lighten($bg-color-3, 10%);
+  }
+  .button:hover {
+    background-color: $bg-color-3;
+  }
+}
