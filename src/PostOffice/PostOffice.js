@@ -10,7 +10,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 // Internal components
 import Navigation from '../Navigation';
-import Letter from './Letter'
+import Letter from './OpenedLetter'
+
 // Sass
 import "./PostOffice.scss";
 

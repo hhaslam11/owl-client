@@ -4,7 +4,7 @@ import React from 'react';
 import { Button, Modal } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 
-import './Letter.scss';
+import './OpenedLetter.scss';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 
 /**
