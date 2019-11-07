@@ -4,7 +4,7 @@ import { useCookies } from 'react-cookie';
 
 import ProgressBar from 'react-bootstrap/ProgressBar'
 
-import './OwlStatus.scss';
+import './Progress.scss';
 import axios from "axios";
 
 const API_SERVER = process.env.REACT_APP_API_SERVER;
@@ -97,7 +97,14 @@ export default function Progress() {
   if (state === OWL_PRESENT) return <h1>present</h1>
   return (
     <>
-      <ProgressBar animated now={state} />
+      <div className="progress-bar-container">
+        <ProgressBar animated now={state} />
+        <div className="progress-info-container">
+          <h6>Canada</h6>
+          <h6>{state.toFixed(2)}%</h6>
+          <h6>Germany</h6>
+        </div>
+      </div>
     </>
   )
 }
