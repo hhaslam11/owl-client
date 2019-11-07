@@ -42,7 +42,7 @@ const onLetterSelect = (cb, userID, countryID) => {
           code: res.data.data.sender.country.abbreviation,
           flag: res.data.data.sender.country.flag_image
         },
-        sent: res.data.sent_date
+        sent: res.data.data.sent_date
       };
 
       cb(result);
@@ -75,8 +75,6 @@ export default function PostOffice() {
       <MenuItem>Logout</MenuItem>
     </MenuList>
   )
-
- ;
   
   return (
     <>

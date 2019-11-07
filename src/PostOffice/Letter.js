@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 //material ui
 import { Button, Modal } from '@material-ui/core';
@@ -6,8 +6,6 @@ import Typography from '@material-ui/core/Typography';
 
 import './Letter.scss';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-
-
 
 /**
  * @param {boolean} props.open if the letter is open or not
