@@ -185,7 +185,6 @@ export default function Inbox() {
       open={sent}
       country={selected && sidebarData.current[selected].country}
       onClose={() => {
-        // setSelected(null);
         setSent(false);
       }}
     />

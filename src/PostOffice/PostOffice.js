@@ -49,7 +49,7 @@ const onLetterSelect = (cb, userID, countryID) => {
       cb(result);
     })
     .catch(e => {
-      console.error('Error: ', e);
+      console.error('Erro?r: ', e);
     });
 };
 
