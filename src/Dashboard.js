@@ -97,7 +97,7 @@ export default function Dashboard(props) {
     });
   };
 
-  useEffect(() => onLoad(cookies.id),[]);
+  // useEffect(() => onLoad(cookies.id),[]);
 
   const owlIsPresent = (owlState) => {
     if (owlState === true) {

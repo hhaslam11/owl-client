@@ -33,7 +33,9 @@ const isOwlInProgress = data => {
         owlData: {
           name: data.data.data[0].owl[0].name,
           speed: data.data.data[0].owl[0].speed,
-          capacity: data.data.data[0].owl[0].carrying_capacity
+          capacity: data.data.data[0].owl[0].carrying_capacity,
+          from: letter.sender.country.name,
+          to: letter.receiver.country.name
         }
       }
     }
@@ -65,11 +67,10 @@ export default function OwlStatusListItem(props) {
       .then(res => {
         const owlProgress = isOwlInProgress(res);
         if (owlProgress) {
-          setCountryData({ //TODO add proper country data here
-            from: 'Canada',
-            to: 'Germany'
+          setCountryData({
+            from: owlProgress.owlData.from,
+            to: owlProgress.owlData.to
           });
-          console.log(owlProgress);
           setOwlData(owlProgress.owlData);
           setState(getProgress(Date.now(), owlProgress.sent, owlProgress.delivery));
         } else {
