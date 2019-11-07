@@ -56,10 +56,10 @@ textarea#letter {
   }
 
   .button {
-    background-color: lighten($bg-color-3, 10%);
+    background-color: $green-color-1;
   }
   .button:hover {
-    background-color: $bg-color-3;
+    background-color: $green-color-3;
   }
 }
 
