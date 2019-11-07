@@ -1,7 +1,7 @@
 @import '../variables';
 
 //enable borders
-$debug: false;
+$debug: true;
 
 .owl-status-list-item {
   display: flex;
@@ -11,6 +11,7 @@ $debug: false;
   color: white;
 
   margin: 0px;
+  margin-top: 75px;
   
   padding: 0px;
   padding-top: 10px;
@@ -35,7 +36,7 @@ $debug: false;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
+
     height: 100%;
     margin-left: 30px;
     margin-right: 30px;
