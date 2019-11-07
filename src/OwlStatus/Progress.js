@@ -13,7 +13,6 @@ const LOADING = 'loading';
 const OWL_PRESENT = 'owl_present';
 
 /**
- * 
  * @param {number} currentTime current time (timestamp in ms)
  * @param {number} sentTime time letter was sent (timestamp in ms)
  * @param {number} deliveredTime time letter is/was delivered (timestamp in ms)
@@ -30,6 +29,7 @@ const isOwlInProgress = data => {
   for (const letter of data.data.data[0].letters) {
 
     if (new Date(letter.delivery_date).getTime() > Date.now()) {
+      console.log(letter);
       return {
         delivery: new Date(letter.delivery_date).getTime(),
         sent: new Date(letter.sent_date).getTime()
@@ -41,6 +41,10 @@ const isOwlInProgress = data => {
 
 export default function Progress() {
   const [state, setState] = useState(LOADING);
+  const [countryData, setCountryData] = useState({
+    from: '',
+    to: ''
+  });
   const [cookies] = useCookies('user');
   
   useEffect(() => {
@@ -48,6 +52,10 @@ export default function Progress() {
       .then(res => {
         const owlProgress = isOwlInProgress(res);
         if (owlProgress) {
+          setCountryData({ //TODO add proper country data here
+            from: '',
+            to: ''
+          });
           setState(getProgress(Date.now(), owlProgress.sent, owlProgress.delivery));
         } else {
           setState(OWL_PRESENT);
@@ -64,9 +72,9 @@ export default function Progress() {
       <div className="progress-bar-container">
         <ProgressBar animated now={state} />
         <div className="progress-info-container">
-          <h6>Canada</h6>
+          <h6>{countryData.from}</h6>
           <h6>{state.toFixed(2)}%</h6>
-          <h6>Germany</h6>
+          <h6>{countryData.to}</h6>
         </div>
       </div>
     </>
