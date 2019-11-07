@@ -5,11 +5,14 @@ $debug: false;
 .opened-letter-container {
 
   background-color: $bg-color;
+  
   margin: auto;
   margin-top: 7%;
   width: 420px;
-
   padding: 20px;
+  
+  outline: none;
+
   @if $debug {
     border: 2px solid red;
   }
@@ -24,8 +27,8 @@ $debug: false;
   }
 
   .flag {
-    
     margin-top: 15%;
+
     @if $debug {
       border: 2px solid cyan;
     }
