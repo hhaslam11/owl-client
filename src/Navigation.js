@@ -76,7 +76,7 @@ export default function Map(props) {
       <AppBar position="fixed">
         <Toolbar className={classes.navbar}>
           <div className={classes.navRight}>
-            <img class="nav" height="50px" alt="owl logo" src="/images/owl.png"/>
+            <img class="nav" height="50px" alt="owl logo" src="/images/owl-closed-branch-artboard-01.png"/>
             <Typography variant="h6" className={classes.title}>
               {props.title || 'Home'}
             </Typography>

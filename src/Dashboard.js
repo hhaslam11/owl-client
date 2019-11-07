@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
-
+import axios from 'axios';
 // import './Dashboard.scss';
 
 //Material UI components
@@ -22,6 +22,8 @@ import Map from './Map';
 import Letter from './Letter'
 import useLocation from './hooks/useLocation';
 import sendLetter from './helpers/sendLetter';
+
+const API_SERVER    = process.env.REACT_APP_API_SERVER;
 
 /**
  * @param {function} props.logout the function to call when user clicks logout
@@ -44,7 +46,8 @@ export default function Dashboard(props) {
     open: false,
     selected: null,
     countryName: null,
-    userCountryId: null
+    userCountryId: null,
+    owlPresent: null
   });
 
   const [letterOpen, setLetterOpen] = useState(false);
@@ -65,6 +68,44 @@ export default function Dashboard(props) {
     });
   };
 
+  const isPresent = (owlData) => {
+    for (const letter of owlData.data.data[0].letters) {
+      if (new Date(letter.delivery_date).getTime() > Date.now()) {
+        return false;
+      }
+    }
+    return true;
+  };
+
+  const onLoad = (userID) => {
+    axios.get(`${API_SERVER}/users/${userID}/owls/`, {
+    })
+    .then(res => {
+      if (!isPresent(res)) {
+        setState({
+          ...state, owlPresent: false
+        });
+      } else if (isPresent(res)) {
+        setState({
+          ...state, owlPresent: true
+        });
+      }
+    })
+    .catch(e => {
+      console.error(e);
+    });
+  };
+
+  useEffect(() => onLoad(cookies.id),[]);
+
+  const owlIsPresent = (owlState) => {
+    if (owlState === true) {
+      return <img className="map-owl" height="400px" alt="owl logo" src="/images/owl-closed-branch-artboard-01.png"/>
+    } else if (owlState === false) {
+      return <img className="map-owl" height="400px" alt="owl logo - branch only " src="/images/branch-artboard-01.png"/>
+    }
+  };
+      
   const countryInfo = (
     <div
       role="presentation"
@@ -104,7 +145,7 @@ export default function Dashboard(props) {
       <Navigation
         title="Owl Mail"
         menuList={navMenu}
-        backgroundColor="#012b54"
+        backgroundColor="#0B1B48"
       />
       <Sidebar
         isOpen={state.selected ? true : false}
@@ -114,14 +155,15 @@ export default function Dashboard(props) {
         width="250px"
         backgroundColor="#f2f0f0"
       />
+      {owlIsPresent(state.owlPresent)}
       <Map
-        color="#358c4b"
-        colorOnHover="#286b39"
-        borderColor="#286b39"
+        color= "#84CA50"//"#358c4b"
+        colorOnHover="#589828"//"#286b39"
+        borderColor="#589828"//"#286b39"
         onCountryClick={onCountryClick}
         data={[{
           id: state.selected,
-          fill: "#286b39"
+          fill: "#589828"//"#286b39"
         }]}
       />
     </>

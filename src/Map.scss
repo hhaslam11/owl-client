@@ -1,8 +1,8 @@
 @import "./variables";
 
-img.owl {
-  position: absolute;
+.map-owl {
+  position: fixed;
   top: 30px;
-  left: 30px;
-  z-index: 2;
+  left: 0px;
+  z-index: 2
 }

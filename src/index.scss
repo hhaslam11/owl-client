@@ -12,7 +12,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   
-  background-color: $bg-color;
+  background-image: radial-gradient(circle, $bg-color, #040C22);
   color: $main-text-color;
 }
 
