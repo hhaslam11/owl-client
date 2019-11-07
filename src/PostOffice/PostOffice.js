@@ -34,13 +34,13 @@ const onLetterSelect = (cb, userID, countryID) => {
   })
     .then(res => {
       const result = {
-        id: res.data.id,
-        sender: res.data.sender.username,
-        content: res.data.content,
+        id: res.data.data.id,
+        sender: res.data.data.sender.username,
+        content: res.data.data.content,
         country: {
-          name: res.data.sender.country.name,
-          code: res.data.sender.country.abbreviation,
-          flag: res.data.sender.country.flag_image
+          name: res.data.data.sender.country.name,
+          code: res.data.data.sender.country.abbreviation,
+          flag: res.data.data.sender.country.flag_image
         },
         sent: res.data.sent_date
       };
@@ -103,7 +103,6 @@ export default function PostOffice() {
           alt="post office drawing"
           src="/images/mailbox.png"
           onClick={() => {
-            console.log("hi")
             onLetterSelect(res => {
               setLetterData(res);
               setLetterOpen(true);
