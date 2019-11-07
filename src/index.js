@@ -7,6 +7,7 @@ import './index.scss';
 import App from './App';
 import Inbox from './Inbox/Inbox';
 import OwlStatus from './OwlStatus/OwlStatus';
+import PostOffice from './PostOffice/PostOffice';
 
 import * as serviceWorker from './serviceWorker';
 
@@ -17,6 +18,7 @@ const routing = (
       <Route exact path="/" component={App} />
       <Route exact path="/inbox" component={Inbox} />
       <Route exact path="/owls" component={OwlStatus} />
+      <Route exact path="/postoffice" component={PostOffice} />
     </div>
   </Router>
 )

@@ -86,7 +86,6 @@ $contentWidth: 55%;
   }
 
   textarea {
-    border: 2px solid lightgray; //TODO get rid of this if i don't end up using it
     border: none;
   
     background-color: lighten($bg-color, 5%);
@@ -104,6 +103,3 @@ $contentWidth: 55%;
     }
   }
 }
-
-
-

@@ -52,8 +52,8 @@ export default function Dashboard(props) {
   const navMenu = (
     <MenuList>
       <MenuItem onClick={() => history.push('/inbox')}>Inbox</MenuItem>
-      <MenuItem>Post Office</MenuItem>
       <MenuItem onClick={() => history.push('/owls')}>My Owls</MenuItem>
+      <MenuItem onClick={() => history.push('/postoffice')}>Post Office</MenuItem>
       <MenuItem onClick={props.logout}>Logout</MenuItem>
     </MenuList>
   )
