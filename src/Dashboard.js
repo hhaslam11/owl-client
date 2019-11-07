@@ -154,7 +154,7 @@ export default function Dashboard(props) {
         onClose={() => {setState({ ...state, selected: null, countryName: null })}}
         listItems={countryInfo}
         width="250px"
-        backgroundColor="#f2f0f0"
+        backgroundColor="#d7eec5"
       />
       {owlIsPresent(state.owlPresent)}
       <Map
