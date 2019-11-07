@@ -32,6 +32,10 @@ $debug: false;
   }
 
   .info-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
     height: 100%;
     margin-left: 30px;
     margin-right: 30px;
