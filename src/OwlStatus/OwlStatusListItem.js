@@ -34,8 +34,8 @@ const isOwlInProgress = data => {
           name: data.data.data[0].owl[0].name,
           speed: data.data.data[0].owl[0].speed,
           capacity: data.data.data[0].owl[0].carrying_capacity,
-          from: letter.sender.country.name,
-          to: letter.receiver ? letter.receiver.country.name : ''
+          from: letter.sending_country.name,
+          to: letter.receiving_country.name
         }
       }
     }
