@@ -1,9 +1,12 @@
 import React from "react";
 
+//internal components
+import Progress from './Progress';
+
 export default function OwlStatus() {
 
 
   return (
-    <h1>Owl Status !</h1>
+    <Progress />
   )
 }

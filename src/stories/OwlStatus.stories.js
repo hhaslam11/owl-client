@@ -18,4 +18,5 @@ storiesOf('OwlStatus', module)
     )
   })
   .add('Progress bar', () => <Progress />)
+  // .add('Loading', () => <Loading />)
   .add('Owl status', () => <OwlStatus />);
