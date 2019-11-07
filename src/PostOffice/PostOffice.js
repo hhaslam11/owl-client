@@ -7,7 +7,6 @@ import { useCookies } from 'react-cookie';
 // Material ui
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
-import { Modal, Button } from '@material-ui/core';
 
 // Internal components
 import Navigation from '../Navigation';
@@ -30,8 +29,7 @@ const API_SERVER = process.env.REACT_APP_API_SERVER;
 const onLetterSelect = (cb, userID, countryID) => {
   
   //set path for api here
-  axios.put(`${API_SERVER}/postoffice/245/new`, {
-    country_code: countryID,
+  axios.put(`${API_SERVER}/postoffice/${countryID}/new`, {
     receiver_id: userID
   })
     .then(res => {
@@ -46,21 +44,11 @@ const onLetterSelect = (cb, userID, countryID) => {
         },
         sent: res.data.sent_date
       };
-      
 
-
-      //Do whatever extra stuff you might want to do here,
-      //then pass the response data (or some custom formatted data)
-      //to the callback
       cb(result);
-
     })
     .catch(e => {
-
-      // Maybe you want to make it display an error message on the front end
-      // if request fails. You would do that here
       console.error('Error: ', e);
-
     });
 };
 
@@ -115,6 +103,7 @@ export default function PostOffice() {
           alt="post office drawing"
           src="/images/mailbox.png"
           onClick={() => {
+            console.log("hi")
             onLetterSelect(res => {
               setLetterData(res);
               setLetterOpen(true);
