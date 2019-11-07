@@ -22,13 +22,11 @@
 
 }
 
-img.post-office-image {
-  :hover {
-    cursor: grab;
-  }
-  :active {
-    cursor: grabbing;
-  }
+img.post-office-image:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: 0.05s;
 }
-
-
+img.post-office-image {
+  transition: 0.05s;
+}
