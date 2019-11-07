@@ -1,8 +1,9 @@
 import React from 'react';
 
 //material ui
-import { Button, Modal } from '@material-ui/core';
+import { Button, Modal, Tooltip } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
+import Zoom from '@material-ui/core/Zoom';
 
 import './OpenedLetter.scss';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -35,7 +36,9 @@ export default function Letter(props) {
             </div>
             <div>
               <ListItemAvatar style={{minWidth: "90px"}}>
-                <img className="flag" alt={`${props.letterData.country.flag} flag`} src={props.letterData.country.flag} />
+                <Tooltip TransitionComponent={Zoom} title={props.letterData.country.name}>
+                  <img className="flag" alt={`${props.letterData.country.flag} flag`} src={props.letterData.country.flag} />
+                </Tooltip>
               </ListItemAvatar>
             </div>
           </div>
