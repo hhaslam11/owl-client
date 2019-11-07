@@ -200,6 +200,8 @@ export default function Inbox() {
       <div style={{width: drawerWidth}}>
         <Sidebar
           permanent
+          backgroundColor="#84CA50"
+          color="white"
           displayUnderNavigation
           listItems={inboxList}
           anchor="left"

@@ -12,11 +12,8 @@ import './InboxListItem.scss';
 
 const useStyles = makeStyles(({
   listSelected: {
-    backgroundColor: '#043565',
+    backgroundColor: '#589828',
     color: "white",
-    "& p": {
-      color: "white"
-    }
   }
 
 }));
