@@ -4,12 +4,13 @@ $debug: false;
 
 .opened-letter-container {
 
-  background-color: $bg-color;
-  
+  background-color: lighten($green-color-1, 40%);
+  color: $dark-color-1;
+
   margin: auto;
   margin-top: 7%;
-  width: 420px;
-  padding: 20px;
+  width: 500px;
+  padding: 35px;
   
   outline: none;
 
@@ -21,6 +22,8 @@ $debug: false;
 .opened-letter-header {
   display: flex;
   justify-content: space-between;
+
+  padding-bottom: 20px;
 
   @if $debug {
     border: 2px solid purple;
@@ -50,9 +53,9 @@ $debug: false;
   }
 
   .button {
-    background-color: lighten($bg-color-3, 10%);
+    background-color: $green-color-1;
   }
   .button:hover {
-    background-color: $bg-color-3;
+    background-color: $green-color-3;
   }
 }
