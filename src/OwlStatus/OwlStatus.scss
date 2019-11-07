@@ -1,11 +1,13 @@
 @import '../variables';
 
 //enable borders
-$debug: true;
+$debug: false;
 
 .owl-status-list-item {
   display: flex;
   justify-content: flex-start;
+
+  box-shadow: black 2px 2px 5px;
   
   background-color: darken($bg-color, 10%);
   color: white;
