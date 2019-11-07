@@ -3,17 +3,36 @@
 $debug: false;
 
 .opened-letter-container {
+
+  background-color: $bg-color;
   margin: auto;
   margin-top: 7%;
   width: 420px;
 
+  padding: 20px;
   @if $debug {
     border: 2px solid red;
   }
 }
 
-.opened-letter-container-inner {
+.opened-letter-header {
+  display: flex;
+  justify-content: space-between;
 
+  @if $debug {
+    border: 2px solid purple;
+  }
+
+  .flag {
+    
+    margin-top: 15%;
+    @if $debug {
+      border: 2px solid cyan;
+    }
+  }
+}
+
+.opened-letter-container-inner {
   @if $debug {
     border: 2px solid yellow;
   }
