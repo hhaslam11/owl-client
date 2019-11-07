@@ -1,12 +1,10 @@
 import React from "react";
 
 //internal components
-import Progress from './Progress';
+import OwlStatusListItem from "./OwlStatusListItem";
 
 export default function OwlStatus() {
-
-
   return (
-    <Progress />
+    <OwlStatusListItem />
   )
 }

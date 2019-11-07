@@ -3,8 +3,7 @@
 $debug: false;
 
 .progress-bar-container {
-
-  width: 400px;
+  width: 100%;
   @if $debug {
     border: 2px solid red;
   }
