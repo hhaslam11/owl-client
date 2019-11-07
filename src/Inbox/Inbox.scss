@@ -11,7 +11,7 @@ $contentWidth: 45%;
   display: flex;
   justify-content: flex-start;
   min-height: 100vh;
-  background-color: $bg-color;
+  background-color: lighten($green-color-1, 30%);
   
 
   @if $debug {
@@ -44,8 +44,8 @@ $contentWidth: 45%;
 .letter-content {
   
   line-height: 25px;
-  background-color: lighten($bg-color, 5%);
-  color: $main-text-color;
+  background-color: lighten($green-color-1, 40%);
+  color: black;
 
   @if $debug {
     border: 2px solid red;
@@ -55,8 +55,8 @@ $contentWidth: 45%;
 .letter-container {
   
   width: $contentWidth;
-  background-color: lighten($bg-color, 5%);
-  color: $main-text-color;
+  background-color: lighten($green-color-1, 40%);
+  color: black;
 
   padding-top: 20px;
   padding-bottom: 20px;
@@ -68,8 +68,8 @@ $contentWidth: 45%;
 }
 
 .reply-container {
-  background-color: $bg-color;
-  color: $main-text-color;
+  background-color: lighten($green-color-1, 40);
+  color: black;
   width: $contentWidth;
 
   padding-bottom: 20px;
@@ -80,6 +80,7 @@ $contentWidth: 45%;
   padding-right: 0px;
 
   margin-left: 0px;
+  margin-top: 20px;
   
   @if $debug {
     border: 2px solid blue;
@@ -88,8 +89,8 @@ $contentWidth: 45%;
   textarea {
     border: none;
   
-    background-color: lighten($bg-color, 5%);
-    color: $main-text-color;
+    background-color: lighten($green-color-1, 40%);
+    color: black;
 
     font-size: 20px;
     font-family: 'Indie Flower', cursive;
