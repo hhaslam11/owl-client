@@ -1,0 +1,62 @@
+@import '../variables';
+
+//enable borders
+$debug: true;
+
+.owl-status-list-item {
+  display: flex;
+  justify-content: flex-start;
+  
+  background-color: darken($bg-color, 10%);
+  color: white;
+
+  margin: 0px;
+  margin-top: 75px;
+  
+  padding: 0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  height: 200px;
+  width: 100%;
+
+  @if $debug {
+    border: 2px solid red;
+  }
+
+  img {
+    height: 100%;
+    
+    @if $debug {
+      border: 2px solid white;
+    }
+  }
+
+  .info-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    height: 100%;
+    margin-left: 30px;
+    margin-right: 30px;
+    width: 20%;
+
+    @if $debug {
+      border: 2px solid greenyellow;
+    }
+  }
+
+  .owl-progress {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+
+    margin-right: 30px;
+    @if $debug {
+      border: 2px solid pink;
+    }
+  }
+}

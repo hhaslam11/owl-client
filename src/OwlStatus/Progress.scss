@@ -1,0 +1,18 @@
+@import '../variables';
+
+$debug: false;
+
+.progress-bar-container {
+  width: 100%;
+  @if $debug {
+    border: 2px solid red;
+  }
+}
+
+.progress-info-container {
+  display: flex;
+  justify-content: space-between;
+  @if $debug {
+    border: 2px solid green;
+  }
+}

@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, BrowserRouter as Router } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './index.scss';
 import App from './App';
 import Inbox from './Inbox/Inbox';
+import OwlStatus from './OwlStatus/OwlStatus';
 import PostOffice from './PostOffice/PostOffice';
 
 import * as serviceWorker from './serviceWorker';
@@ -15,6 +17,7 @@ const routing = (
     <div>
       <Route exact path="/" component={App} />
       <Route exact path="/inbox" component={Inbox} />
+      <Route exact path="/owls" component={OwlStatus} />
       <Route exact path="/postoffice" component={PostOffice} />
     </div>
   </Router>
