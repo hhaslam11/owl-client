@@ -8,6 +8,9 @@ import { useCookies } from 'react-cookie';
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
 
+// Snackbar
+import { SnackbarProvider, useSnackbar } from 'notistack';
+
 // Internal components
 import Navigation from '../Navigation';
 import Letter from './OpenedLetter'
@@ -48,15 +51,17 @@ const onLetterSelect = (cb, userID, countryID) => {
 
       cb(result);
     })
-    .catch(e => {
-      console.error('Erro?r: ', e);
+    .catch(() => {
+      cb();
     });
 };
 
-export default function PostOffice() {
+function PostOffice() {
 
   // Hooks 🦉
   const history = useHistory();
+
+  const { enqueueSnackbar } = useSnackbar();
 
   const [letterOpen, setLetterOpen] = useState(false);
   const [letterData, setLetterData] = useState('');
@@ -103,6 +108,11 @@ export default function PostOffice() {
           src="/images/mailbox.png"
           onClick={() => {
             onLetterSelect(res => {
+
+              if (!res) {
+                enqueueSnackbar('There are currently no letters at the post office')
+              }
+
               setLetterData(res);
               setLetterOpen(true);
             }, cookies.id, cookies.country);
@@ -110,5 +120,13 @@ export default function PostOffice() {
         />
       </div>
     </>
+  )
+}
+
+export default function IntegrateSnackbar() {
+  return (
+    <SnackbarProvider>
+      <PostOffice />
+    </SnackbarProvider>
   )
 }
