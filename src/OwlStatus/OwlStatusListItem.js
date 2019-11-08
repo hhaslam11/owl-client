@@ -90,7 +90,7 @@ export default function OwlStatusListItem(props) {
       <img alt="owl" src="/images/owl-closed-branch.png" />
       <div className="info-box">
         <h1>{owlData.name}</h1>
-        <h5>Speed: {owlData.speed}</h5>
+        <h5>Speed: {owlData.speed}km/h</h5>
         <h5>Carrying Capacity: {owlData.capacity}</h5>
       </div>
       <div className="owl-progress">
