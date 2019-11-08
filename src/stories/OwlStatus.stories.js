@@ -7,7 +7,6 @@ import OwlStatusListItem from '../OwlStatus/OwlStatusListItem';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 storiesOf('OwlStatus', module)
-  .add('Owl status page', () => <OwlStatus />)
   .add('Owl List Item', () => {
     return (
       <OwlStatusListItem
@@ -16,7 +15,4 @@ storiesOf('OwlStatus', module)
         owlCarryCapacity={1}
       />
     )
-  })
-  .add('Progress bar', () => <Progress />)
-  // .add('Loading', () => <Loading />)
-  .add('Owl status', () => <OwlStatus />);
+  });
