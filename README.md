@@ -1,5 +1,6 @@
 # Owl client
 ### [Owl Server](https://github.com/hhaslam11/owl-server)
+This application allows users to anonymously send virtual letters all over the world. Users are able to pick up a letter that was sent to the country they are currently at. Each letter is associated with an owl and the delivery date is calculated according to the owl speed and distance between countries. Users are able to see the status of their owl and reply to letters.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
