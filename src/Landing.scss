@@ -8,7 +8,7 @@ container.landing-page {
   align-content: center;
   align-self: center;
   justify-content:center;
-  background-image: radial-gradient(circle, $bg-color, #040C22)
+  background-image: radial-gradient(circle, $bg-color, #040C22);
 }
 
 image.landing {
@@ -18,7 +18,7 @@ image.landing {
 div.buttons {
   display: flex;
   justify-content: space-evenly;
-  z-index: 3
+  z-index: 3;
 }
 
 div.top-logo {

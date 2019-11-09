@@ -16,7 +16,7 @@ export default function(props) {
       <div className="sent-message">
         <div className="btn-div">
           <h2>Your letter is on its way!</h2>
-          <IconButton size="small" onClick={props.onClose}><CloseIcon style={{color: 'white'}} /></IconButton>
+          <IconButton size="small" onClick={props.onClose}><CloseIcon style={{ color: 'white' }} /></IconButton>
         </div>
         <p>
           Your owl is flying to {props.country || 'the destination'} with your letter.

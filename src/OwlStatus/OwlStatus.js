@@ -1,10 +1,11 @@
 import React from "react";
 import { useHistory } from 'react-router-dom';
 
+// Material UI
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
 
-//internal components
+// Internal components
 import OwlStatusListItem from "./OwlStatusListItem";
 import Navigation from '../Navigation';
 

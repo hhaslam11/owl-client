@@ -3,9 +3,8 @@ import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
-// import './Dashboard.scss';
 
-//Material UI components
+// Material UI components
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
 import List from '@material-ui/core/List';
@@ -16,6 +15,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MailIcon from '@material-ui/icons/Mail';
 import PublicIcon from '@material-ui/icons/Public';
 
+// Internal componenets
 import Navigation from './Navigation';
 import Sidebar from './Sidebar';
 import Map from './Map';
@@ -23,7 +23,7 @@ import Letter from './Letter'
 import useLocation from './hooks/useLocation';
 import sendLetter from './helpers/sendLetter';
 
-const API_SERVER    = process.env.REACT_APP_API_SERVER;
+const API_SERVER = process.env.REACT_APP_API_SERVER;
 
 /**
  * @param {function} props.logout the function to call when user clicks logout
@@ -37,7 +37,7 @@ export default function Dashboard(props) {
   useEffect(() => {
     getLocation(iso2 => {
       setCookie('country', iso2);
-      setState({ ...state, userCountryId: iso2});
+      setState({ ...state, userCountryId: iso2 });
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -79,8 +79,7 @@ export default function Dashboard(props) {
   };
 
   const onLoad = (userID) => {
-    axios.get(`${API_SERVER}/users/${userID}/owls/`, {
-    })
+    axios.get(`${API_SERVER}/users/${userID}/owls/`)
     .then(res => {
       if (!isPresent(res)) {
         setState({
@@ -96,8 +95,6 @@ export default function Dashboard(props) {
       console.error(e);
     });
   };
-
-  // useEffect(() => onLoad(cookies.id),[]);
 
   const owlIsPresent = (owlState) => {
     if (owlState === true) {
@@ -158,13 +155,13 @@ export default function Dashboard(props) {
       />
       {owlIsPresent(state.owlPresent)}
       <Map
-        color= "#84CA50"//"#358c4b"
-        colorOnHover="#589828"//"#286b39"
-        borderColor="#589828"//"#286b39"
+        color= "#84CA50"
+        colorOnHover="#589828"
+        borderColor="#589828"
         onCountryClick={onCountryClick}
         data={[{
           id: state.selected,
-          fill: "#589828"//"#286b39"
+          fill: "#589828"
         }]}
       />
     </>

@@ -13,8 +13,6 @@ import Grow from '@material-ui/core/Grow';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
 
-import "./Navigation.scss";
-
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
@@ -65,7 +63,7 @@ export default function Map(props) {
     setOpen(!open);
   };
 
-  const handleMenuClick = event => {
+  const handleMenuClick = () => {
     if (props.menuList) {
       toggleMenu();
     }
@@ -90,7 +88,7 @@ export default function Map(props) {
       <Popper style={{ zIndex: 3 }} open={open} anchorEl={anchorRef.current} transition disablePortal>
         {({ TransitionProps }) => (
           <Grow
-            {...TransitionProps}
+            { ...TransitionProps }
             style={{ marginTop: '10px', transformOrigin: 'center top' }}
           >
             <Paper id="menu-list-grow">

@@ -1,8 +1,9 @@
 @import "../variables";
+
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Neucha&display=swap');
 
-//enable borders to make it easy to view the layout
+// Enable borders to make it easy to view the layout
 $debug: false;
 
 $contentWidth: 45%;
@@ -10,10 +11,10 @@ $contentWidth: 45%;
 .inbox {
   display: flex;
   justify-content: flex-start;
+
   min-height: 100vh;
   background-color: lighten($green-color-1, 30%);
   
-
   @if $debug {
     border: 2px solid palegreen;
   }
@@ -34,6 +35,7 @@ $contentWidth: 45%;
 .button-div {
   display: flex;
   justify-content: flex-end;
+  
   margin-top: 10px;
 
   @if $debug {
@@ -42,10 +44,10 @@ $contentWidth: 45%;
 }
 
 .letter-content {
-  
-  line-height: 25px;
   background-color: lighten($green-color-1, 40%);
   color: black;
+
+  line-height: 25px;
 
   @if $debug {
     border: 2px solid red;
@@ -53,15 +55,16 @@ $contentWidth: 45%;
 }
 
 .letter-container {
-  
-  width: $contentWidth;
   background-color: lighten($green-color-1, 40%);
   color: black;
+  
+  width: $contentWidth;
 
   padding-top: 20px;
   padding-bottom: 20px;
+  
   margin-bottom: 20px;
-
+  
   @if $debug {
     border: 2px solid green;
   }
@@ -70,17 +73,18 @@ $contentWidth: 45%;
 .reply-container {
   background-color: lighten($green-color-1, 40);
   color: black;
-  width: $contentWidth;
-
-  padding-bottom: 20px;
-  margin-bottom: 20px;
   
-  padding-top: 20px;
+  width: $contentWidth;
+  
+  
   padding-left: 0px;
   padding-right: 0px;
-
+  padding-top: 20px;
+  padding-bottom: 20px;
+  
   margin-left: 0px;
   margin-top: 20px;
+  margin-bottom: 20px;
   
   @if $debug {
     border: 2px solid blue;

@@ -16,8 +16,6 @@ storiesOf('useLocation hook', module)
 
     }, []);
 
-
-
     return (
       <>
         <h4>country code: {state || 'not found'}</h4>

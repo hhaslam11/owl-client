@@ -5,7 +5,7 @@ import { storiesOf } from '@storybook/react';
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
 
-import Navigation from '../Navigation'
+import Navigation from '../Navigation';
 
 const menuList = (
   <MenuList>
@@ -21,9 +21,3 @@ storiesOf('Navigation', module)
   .add('with custom title', () => <Navigation title="Pretty Cool App" />)
   .add('with custom text color', () => <Navigation color="yellow" />)
   .add('with menu items', () => <Navigation menuList={menuList} />);
-
-/*
-because im lazy:
-.add('', () => {})
-.add('', () => <Navigation />)
-*/

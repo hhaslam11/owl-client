@@ -2,8 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 
-import Login from './Login'
-import Register from './Register'
+import Login from './Login';
+import Register from './Register';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
 
@@ -141,14 +141,14 @@ export default function Landing(props) {
           generalError={login.generalError}
 
           emailValue={login.email}
-          emailOnChange={(value) => setLogin({...login, email: value, emailError: null})}
+          emailOnChange={value => setLogin({ ...login, email: value, emailError: null })}
           emailError={login.emailError}
 
           passwordValue={login.password}
-          passwordOnChange={(value) => setLogin({...login, password: value, passwordError: null})}
+          passwordOnChange={value => setLogin({ ...login, password: value, passwordError: null })}
           passwordError={login.passwordError}
 
-          onCancel={() => setLogin({...login, open: false})}
+          onCancel={() => setLogin({ ...login, open: false })}
           onSubmit={() => validate(login.email, login.password)}
         />
         <Register
@@ -156,14 +156,14 @@ export default function Landing(props) {
           open={register.open}
 
           emailValue={register.email}
-          emailOnChange={(value) => setRegister({ ...register, email: value, error: '' })}
+          emailOnChange={value => setRegister({ ...register, email: value, error: '' })}
 
           usernameValue={register.username}
-          usernameOnChange={(value) => setRegister({ ...register, username: value, error: '' })}
+          usernameOnChange={value => setRegister({ ...register, username: value, error: '' })}
 
           passwordValue={register.password}
-          passwordOnChange={(value) => setRegister({ ...register, password: value, error: '' })}
-          passwordConfirmOnChange={(value) => setRegister({ ...register, passwordConfirm: value, error: '' })}
+          passwordOnChange={value => setRegister({ ...register, password: value, error: '' })}
+          passwordConfirmOnChange={value => setRegister({ ...register, passwordConfirm: value, error: '' })}
 
           onSubmit={validateRegister}
           onCancel={() => {

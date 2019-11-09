@@ -2,10 +2,10 @@ import React from 'react';
 import { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
-import Letter from '../Letter'
+import Letter from '../Letter';
 
 storiesOf('Letter', module)
-  .add('Letter', () => <Letter open/>)
+  .add('Letter', () => <Letter open />)
   .add('Letter with toggle', () => {
     const [state, setState] = useState(false);
     const [text, setText]   = useState(false);

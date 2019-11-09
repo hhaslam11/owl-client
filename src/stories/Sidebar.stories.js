@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
+// Material UI
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
@@ -42,7 +43,6 @@ storiesOf('Sidebar', module)
   .add('Sidebar closed', () => <Sidebar listItems={sideList}/>)
   .add('Sidebar opened', () => <Sidebar listItems={sideList} isOpen />)
   .add('Sidebar toggle', () => {
-    //using state to toggle the sidebar
     const [open, setOpen] = React.useState(false);
     
     return (
@@ -63,9 +63,3 @@ storiesOf('Sidebar', module)
       </>
     )
   });
-
-/*
-because im lazy:
-.add('', () => {})
-.add('', () => <Sidebar />)
-*/

@@ -3,12 +3,12 @@ import { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { Button } from '@material-ui/core';
 
-import Register from '../Register'
+import Register from '../Register';
 import { statement } from '@babel/template';
 
 storiesOf('Register', module)
   .add('Register', () => <Register open />)
-  .add('with custom title', () => <Register open title='🦉 Create a new account 🦉'/>)
+  .add('with custom title', () => <Register open title='🦉 Create a new account 🦉' />)
   .add('With filled values', () => {
     return (
       <Register
@@ -95,10 +95,4 @@ storiesOf('Register', module)
         />
       </>
     )
-  })
-  ;
-/*
-because im lazy:
-.add('', () => {})
-.add('', () => <Register open />)
-*/
+  });

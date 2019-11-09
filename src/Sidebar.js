@@ -1,13 +1,12 @@
 import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
 
+// Material UI
 import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { Divider } from "@material-ui/core";
-
-import "./Sidebar.scss";
 
 const useStyles = makeStyles(theme => ({
   paper: {

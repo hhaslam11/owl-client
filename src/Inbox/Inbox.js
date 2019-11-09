@@ -1,16 +1,16 @@
 import React from 'react';
+import axios from "axios";
 import { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
-import axios from "axios";
 
 // Material ui
 import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
-import SendIcon from '@material-ui/icons/Send';
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
+import SendIcon from '@material-ui/icons/Send';
 import { makeStyles } from '@material-ui/core/styles';
 import { TextareaAutosize, Button } from "@material-ui/core";
 
@@ -20,18 +20,17 @@ import Sent from './Sent';
 import Sidebar from '../Sidebar';
 import InboxListItem from '../Inbox/InboxListItem';
 import Navigation from '../Navigation';
-
-// Sass
-import "./Inbox.scss"
 import SidebarEmpty from './SidebarEmpty';
 import sendLetter from '../helpers/sendLetter';
+
+// Sass
+import "./Inbox.scss";
 
 const API_SERVER = process.env.REACT_APP_API_SERVER;
 const drawerWidth = '300px';
 
-// Override logged in userid. Only use this for development purposes, otherwise set to null
-// 93 is a good example
-// 300 is a blank example
+// Override logged in userid.
+// Only use this for development purposes, otherwise set to null
 const devUserId = null;
 
 const useStyles = makeStyles(theme => ({
@@ -167,7 +166,7 @@ export default function Inbox() {
         <>
           <Container className="letter-container">
             <Typography variant="h4">{letter.sent_by_current_user ? "You" : sidebarData.current[selected].username}</Typography>
-            <Typography variant="subtitle2">{letter.sent_date.slice(0,10)}</Typography>
+            <Typography variant="subtitle2">{letter.sent_date.slice(0, 10)}</Typography>
             <p className="letter-content">
               {letter.content}
             </p>
@@ -182,58 +181,58 @@ export default function Inbox() {
 
   return (
     <>
-    <Sent
-      open={sent}
-      country={selected && sidebarData.current[selected].country}
-      onClose={() => {
-        setSent(false);
-      }}
-    />
-    <Navigation
-      title="Owl Mail"
-      menuList={navMenu}
-      backgroundColor="#012b54"
-    />
-    <div className="inbox">
-
-      {/* This is to make the sidebar actually take up space (otherwise content will hide behind it) */}
-      <div style={{width: drawerWidth}}>
-        <Sidebar
-          permanent
-          backgroundColor="#84CA50"
-          color="white"
-          displayUnderNavigation
-          listItems={inboxList}
-          anchor="left"
-          width={drawerWidth}
-        />
-      </div>
-      <main className={classes.content}>
-        {contentList}
-        <Container className="reply-container" >
-          <Typography variant="h4" className="reply-header">Reply</Typography>
-          <TextareaAutosize
-            placeholder="Write your letter..."
-            disabled={!selected}
-            value={textArea}
-            onChange={e => setTextArea(e.target.value)}
+      <Sent
+        open={sent}
+        country={selected && sidebarData.current[selected].country}
+        onClose={() => {
+          setSent(false);
+        }}
+      />
+      <Navigation
+        title="Owl Mail"
+        menuList={navMenu}
+        backgroundColor="#012b54"
+      />
+      <div className="inbox">
+      
+        {/* This is to make the sidebar actually take up space (otherwise content will hide behind it) */}
+        <div style={{ width: drawerWidth }}>
+          <Sidebar
+            permanent
+            displayUnderNavigation
+            backgroundColor="#84CA50"
+            color="white"
+            listItems={inboxList}
+            anchor="left"
+            width={drawerWidth}
           />
-
-          <div className="button-div">
-            <Button
-              variant="contained"
-              size="small"
-              endIcon={<SendIcon/>}
+        </div>
+        <main className={classes.content}>
+          {contentList}
+          <Container className="reply-container" >
+            <Typography variant="h4" className="reply-header">Reply</Typography>
+            <TextareaAutosize
+              placeholder="Write your letter..."
               disabled={!selected}
-              onClick={send}
-            >
-              Send
-            </Button>
-          </div>
-
-        </Container>
-      </main>
-    </div>
+              value={textArea}
+              onChange={e => setTextArea(e.target.value)}
+            />
+  
+            <div className="button-div">
+              <Button
+                variant="contained"
+                size="small"
+                endIcon={<SendIcon/>}
+                disabled={!selected}
+                onClick={send}
+              >
+                Send
+              </Button>
+            </div>
+      
+          </Container>
+        </main>
+      </div>
     </>
   )
 }

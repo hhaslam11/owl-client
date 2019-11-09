@@ -1,19 +1,20 @@
 @import '../variables';
 
 .sent-message {
+  background-color: $green-color-3;
   color: $main-text-color;
 
   position: absolute;
-  // width: 400px;
-  
-  background-color: $green-color-3;
-  padding: 30px;
-  padding-top: 10px;
-  border: none;
-  border-radius: 10px;
-  outline: 0;
   top: 40%;
   left: 40%;
+  
+  padding: 30px;
+  padding-top: 10px;
+  
+  border: none;
+  border-radius: 10px;
+  
+  outline: 0;
 
   .btn-div {
     display: flex;

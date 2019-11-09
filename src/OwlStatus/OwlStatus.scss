@@ -1,16 +1,17 @@
 @import '../variables';
 
-//enable borders
+// Enable borders
 $debug: false;
 
 .owl-status-list-item {
   display: flex;
   justify-content: flex-start;
 
-  box-shadow: black 2px 2px 5px;
   
   background-color: darken($bg-color, 10%);
   color: white;
+  
+  box-shadow: black 2px 2px 5px;
 
   margin: 0px;
   margin-top: 75px;
@@ -39,10 +40,11 @@ $debug: false;
     flex-direction: column;
     justify-content: center;
 
+    width: 20%;
     height: 100%;
+
     margin-left: 30px;
     margin-right: 30px;
-    width: 20%;
 
     @if $debug {
       border: 2px solid greenyellow;
@@ -53,10 +55,12 @@ $debug: false;
     display: flex;
     flex-direction: column;
     justify-content: center;
+
     height: 100%;
     width: 100%;
 
     margin-right: 30px;
+    
     @if $debug {
       border: 2px solid pink;
     }

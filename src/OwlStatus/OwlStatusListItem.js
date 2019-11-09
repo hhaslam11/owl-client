@@ -44,12 +44,11 @@ const isOwlInProgress = data => {
 };
 
 /**
- * 
  * @param {string} props.owlName
  * @param {number} props.owlSpeed
  * @param {number} props.owlCarryCapacity
  */
-export default function OwlStatusListItem(props) {
+export default function OwlStatusListItem() {
   const [cookies] = useCookies('user');
   const [state, setState] = useState(LOADING);
   const [countryData, setCountryData] = useState({
@@ -81,7 +80,7 @@ export default function OwlStatusListItem(props) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (state === LOADING) return <h1>loading</h1>
+  if (state === LOADING)     return <h1>loading</h1>
   if (state === OWL_PRESENT) return <h1>present</h1>
 
   return (

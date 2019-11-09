@@ -1,8 +1,6 @@
-
 import React from "react";
 
-
-import ProgressBar from 'react-bootstrap/ProgressBar'
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
 import './Progress.scss';
 

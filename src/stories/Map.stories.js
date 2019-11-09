@@ -5,7 +5,7 @@ import Map from '../Map';
 
 storiesOf('Map', module)
   .add('Map skeleton', () => {
-    return (<Map color="blue"/>)
+    return (<Map color="blue" />)
   })
   .add('Map with hover color', () => {
     return (

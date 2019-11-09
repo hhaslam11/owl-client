@@ -1,21 +1,21 @@
 import React from 'react';
 
-//material ui
+// Material ui
 import { Button, Modal, Tooltip } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Zoom from '@material-ui/core/Zoom';
-
-import './OpenedLetter.scss';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 
+import './OpenedLetter.scss';
+
 /**
- * @param {boolean} props.open if the letter is open or not
+ * @param {boolean}  props.open if the letter is open or not
  * @param {function} props.onClose function when user clicks outside the borders of the letters
  * @param {function} props.onReply function that gets called when user sends letter (letter content is passed to this function)
  */
 export default function Letter(props) {
-
   if (!props.letterData) return null;
+
   return (
 
     <Modal
@@ -35,7 +35,7 @@ export default function Letter(props) {
               <Typography variant="subtitle2">{props.letterData.sent.slice(0, 10)}</Typography>
             </div>
             <div>
-              <ListItemAvatar style={{minWidth: "90px"}}>
+              <ListItemAvatar style={{ minWidth: "90px" }}>
                 <Tooltip TransitionComponent={Zoom} title={props.letterData.country.name}>
                   <img className="flag" alt={`${props.letterData.country.flag} flag`} src={props.letterData.country.flag} />
                 </Tooltip>

@@ -3,7 +3,6 @@
 $debug: false;
 
 .opened-letter-container {
-
   background-color: lighten($green-color-1, 40%);
   color: $dark-color-1;
 
@@ -12,10 +11,10 @@ $debug: false;
   width: 500px;
   padding: 35px;
   
-  outline: none;
-  box-shadow: 0px 0px 3px;
   border-style: none;
   border-radius: 8px;
+  box-shadow: 0px 0px 3px;
+  outline: none;
 
   @if $debug {
     border: 2px solid red;

@@ -2,11 +2,11 @@ import React from 'react';
 import { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 
-import Login from '../Login'
+import Login from '../Login';
 import { Button } from '@material-ui/core';
 
 storiesOf('Login', module)
-  .add('Login', () => <Login open/>)
+  .add('Login', () => <Login open />)
   .add('with email error', () => <Login open emailError='Email address not found' />)
   .add('with password error', () => <Login open passwordError='Password is incorrect' />)
   .add('with general error', () => <Login open generalError='Email or password is incorrect' />)
@@ -21,9 +21,9 @@ storiesOf('Login', module)
       <Login
         open
         emailError={state.emailError}
-        emailOnChange={() => {setState({...state, emailError: null})}}
+        emailOnChange={() => {setState({ ...state, emailError: null })}}
         passwordError={state.passwordError}
-        passwordOnChange={() => {setState({...state, passwordError: null})}}
+        passwordOnChange={() => {setState({ ...state, passwordError: null })}}
       />
     )
   })
@@ -37,7 +37,7 @@ storiesOf('Login', module)
         <Button onClick={() => {setState({ ...state, open: true })}}>Login</Button>
         <Login
           open={state.open}
-          onCancel={() => setState({...state, open: false})}
+          onCancel={() => setState({ ...state, open: false })}
         />
       </>
     )
@@ -55,11 +55,11 @@ storiesOf('Login', module)
     
     const validate = (email, password) => {
       if (!email) {
-        setState({...state, emailError: 'email cannot be blank'});
+        setState({ ...state, emailError: 'email cannot be blank' });
         return;
       }
       if (!password) {
-        setState({...state, passwordError: 'password cannot be blank'});
+        setState({ ...state, passwordError: 'password cannot be blank' });
         return;
       }
       setState({ ...state, email: null, password: null, open: false });
@@ -67,29 +67,23 @@ storiesOf('Login', module)
 
     return (
       <>
-      <Button onClick={() => {setState({ ...state, open: true })}}>Login</Button>
-      <Login
-        open={state.open}
+        <Button onClick={() => {setState({ ...state, open: true })}}>Login</Button>
+        <Login
+          open={state.open}
 
-        emailValue={state.email}
-        emailOnChange={(value) => setState({...state, email: value, emailError: null})}
-        emailError={state.emailError}
+          emailValue={state.email}
+          emailOnChange={value => setState({ ...state, email: value, emailError: null })}
+          emailError={state.emailError}
 
-        passwordValue={state.password}
-        passwordOnChange={(value) => setState({...state, password: value, passwordError: null})}
-        passwordError={state.passwordError}
+          passwordValue={state.password}
+          passwordOnChange={value => setState({ ...state, password: value, passwordError: null })}
+          passwordError={state.passwordError}
 
-        onCancel={() => setState({...state, open: false})}
-        onSubmit={() => validate(state.email, state.password)}
-      />
-      <p>email: {state.email}</p>
-      <p>password: {state.password}</p>
+          onCancel={() => setState({...state, open: false})}
+          onSubmit={() => validate(state.email, state.password)}
+        />
+        <p>email: {state.email}</p>
+        <p>password: {state.password}</p>
       </>
     )
   });
-
-/*
-because im lazy:
-.add('', () => {})
-.add('', () => <Login />)
-*/
