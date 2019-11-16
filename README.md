@@ -11,6 +11,9 @@ Users can choose which country to send a letter to
 Users can see the letters they sent and received too
 ![Inbox](https://github.com/hhaslam11/owl-client/blob/master/docs/Inbox.png)
 
+Users can see the status of their owl(s)
+![Owl Status](https://github.com/hhaslam11/owl-client/blob/master/docs/OwlStatus.png)
+
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
